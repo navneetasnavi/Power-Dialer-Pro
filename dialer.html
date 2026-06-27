@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Power Dialer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --green:#00C853;
+  --green-dark:#007B33;
+  --green-header:#00813A;
+  --teal:#009688;
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1A1A2E;
+  --sub:#6B7280;
+  --border:#E5E7EB;
+  --red:#EF5350;
+  --orange:#FF9800;
+  --blue:#2196F3;
+  --purple:#9C27B0;
+  --amber:#FFC107;
+  --cyan:#00BCD4;
+  --brown:#795548;
+  --grey:#9E9E9E;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);min-height:100vh;display:flex;justify-content:center}
+.phone{width:100%;max-width:430px;min-height:100vh;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+
+/* ── HEADER ── */
+.header{background:var(--green-header);padding:14px 16px 12px;padding-top:calc(14px + env(safe-area-inset-top,0px));flex-shrink:0}
+.header-row{display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:10px}
+.header-icon{width:34px;height:34px;background:rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.header-title{color:#fff;font-size:18px;font-weight:700;letter-spacing:-.3px}
+.header-sub{color:rgba(255,255,255,.75);font-size:12px;margin-top:1px}
+.header-right{display:flex;align-items:center;gap:8px}
+.hdr-btn{background:rgba(255,255,255,.18);border:none;border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;font-weight:600;cursor:pointer}
+.progress-wrap{margin-top:10px;display:flex;align-items:center;gap:8px}
+.pbar{flex:1;height:5px;background:rgba(255,255,255,.25);border-radius:3px;overflow:hidden}
+.pbar-fill{height:100%;background:#fff;border-radius:3px;width:0%;transition:width .4s ease}
+.pbar-text{color:rgba(255,255,255,.9);font-size:11px;font-weight:600;min-width:36px;text-align:right}
+
+/* ── SCROLL BODY ── */
+.scroll-body{flex:1;overflow-y:auto;padding:0 0 80px;-webkit-overflow-scrolling:touch}
+.scroll-body::-webkit-scrollbar{display:none}
+
+/* ── IMPORT CARD ── */
+.import-card{margin:12px 14px;background:#fff;border-radius:14px;border:2px dashed #B0BEC5;padding:18px;text-align:center;position:relative;cursor:pointer;transition:border-color .2s}
+.import-card.has-file{border-color:var(--green);background:#F0FFF4}
+.import-card input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.import-card .ic-icon{font-size:30px;margin-bottom:6px}
+.import-card .ic-title{font-size:14px;font-weight:600;color:#37474F}
+.import-card .ic-sub{font-size:12px;color:#90A4AE;margin-top:3px}
+.import-card.has-file .ic-title{color:var(--green-dark)}
+
+/* ── CONTACT CARD ── */
+.contact-card{margin:0 14px 10px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.cc-top{background:var(--green-header);padding:18px 16px 20px;position:relative}
+.cc-queue{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.2);border-radius:20px;padding:3px 10px;color:#fff;font-size:11px;font-weight:600}
+.cc-avatar{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.25);border:2.5px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px}
+.cc-name{color:#fff;font-size:20px;font-weight:700;letter-spacing:-.3px}
+.cc-number{color:rgba(255,255,255,.85);font-size:15px;margin-top:3px;letter-spacing:.5px}
+.cc-company{color:rgba(255,255,255,.65);font-size:13px;margin-top:2px}
+.cc-empty{color:rgba(255,255,255,.5);font-size:15px;padding:8px 0}
+
+.cc-actions{display:flex;border-bottom:1px solid var(--border)}
+.cc-action{flex:1;padding:13px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:none;background:none;font-size:11px;color:var(--sub);font-weight:500;transition:background .15s}
+.cc-action:active{background:#F5F5F5}
+.cc-action .ca-icon{font-size:20px}
+
+/* ── DIAL SECTION ── */
+.dial-section{margin:0 14px 10px;background:#fff;border-radius:16px;padding:18px 16px;box-shadow:0 2px 8px rgba(0,0,0,.07);text-align:center}
+.ds-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--sub);margin-bottom:14px}
+.dial-btn-wrap{display:flex;justify-content:center;margin-bottom:4px;position:relative}
+.pulse-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;border:3px solid var(--green);opacity:0;animation:none}
+.pulse-ring.active{animation:pulse 1.5s ease-out infinite}
+@keyframes pulse{0%{transform:translate(-50%,-50%) scale(1);opacity:.7}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
+.dial-btn{width:72px;height:72px;border-radius:50%;background:var(--green);border:none;color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,200,83,.35);transition:transform .12s,box-shadow .12s;position:relative;z-index:1}
+.dial-btn:active{transform:scale(.91);box-shadow:0 2px 8px rgba(0,200,83,.2)}
+.dial-btn:disabled{background:#B0BEC5;box-shadow:none;cursor:default}
+.dial-btn.calling{background:#FF5722;box-shadow:0 4px 18px rgba(255,87,34,.35)}
+.ds-hint{font-size:12px;color:var(--sub);margin-top:10px}
+
+/* ── STATUS CHIPS ── */
+.status-section{margin:0 14px 10px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.ss-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin-bottom:10px}
+.chips-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.chip{padding:10px 8px;border-radius:10px;border:1.5px solid transparent;font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s;background:#F5F5F5;color:#424242;-webkit-appearance:none}
+.chip:active{transform:scale(.95)}
+.chip.sel{border-color:currentColor}
+.chip.c-green{color:#2E7D32;background:#E8F5E9}.chip.c-green.sel{background:#C8E6C9;border-color:#43A047}
+.chip.c-lime{color:#33691E;background:#F9FBE7}.chip.c-lime.sel{background:#DCEDC8;border-color:#7CB342}
+.chip.c-orange{color:#E65100;background:#FFF3E0}.chip.c-orange.sel{background:#FFE0B2;border-color:#FB8C00}
+.chip.c-amber{color:#F57F17;background:#FFFDE7}.chip.c-amber.sel{background:#FFF9C4;border-color:#F9A825}
+.chip.c-grey{color:#424242;background:#F5F5F5}.chip.c-grey.sel{background:#E0E0E0;border-color:#757575}
+.chip.c-purple{color:#6A1B9A;background:#F3E5F5}.chip.c-purple.sel{background:#E1BEE7;border-color:#8E24AA}
+.chip.c-cyan{color:#006064;background:#E0F7FA}.chip.c-cyan.sel{background:#B2EBF2;border-color:#00838F}
+.chip.c-brown{color:#4E342E;background:#EFEBE9}.chip.c-brown.sel{background:#D7CCC8;border-color:#6D4C41}
+.chip.c-red{color:#B71C1C;background:#FFEBEE}.chip.c-red.sel{background:#FFCDD2;border-color:#E53935}
+.chip.c-blue{color:#0D47A1;background:#E3F2FD}.chip.c-blue.sel{background:#BBDEFB;border-color:#1976D2}
+
+/* ── NOTES ── */
+.notes-section{margin:0 14px 10px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.notes-section label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);display:block;margin-bottom:8px}
+.notes-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-size:14px;resize:none;outline:none;font-family:inherit;color:var(--text);background:#FAFAFA;height:72px;transition:border-color .2s}
+.notes-input:focus{border-color:var(--green);background:#fff}
+
+/* ── ACTION BTNS ── */
+.action-section{margin:0 14px 10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.act-btn{padding:15px 10px;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;transition:transform .12s,opacity .12s;-webkit-appearance:none;letter-spacing:-.2px}
+.act-btn:active{transform:scale(.95);opacity:.85}
+.act-btn.apply{background:var(--green);color:#fff;box-shadow:0 3px 12px rgba(0,200,83,.3)}
+.act-btn.skip{background:#ECEFF1;color:#546E7A}
+
+/* ── BOTTOM CONTROLS ── */
+.bottom-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 14px 10px}
+.bb-btn{padding:12px 6px;border:none;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;text-align:center;line-height:1.4;transition:transform .12s;-webkit-appearance:none}
+.bb-btn:active{transform:scale(.94)}
+.bb-btn.redial{background:#E8F5E9;color:#2E7D32}
+.bb-btn.pause{background:#E3F2FD;color:#0D47A1}
+.bb-btn.pause.on{background:#FFF8E1;color:#F57F17}
+.bb-btn.reset{background:#FFEBEE;color:#C62828}
+
+/* ── LOG ── */
+.log-section{margin:0 14px 10px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.log-header{display:flex;justify-content:space-between;align-items:center;padding:11px 14px 9px;border-bottom:1px solid var(--border)}
+.log-header span:first-child{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub)}
+.log-clear{font-size:11px;color:var(--green-dark);font-weight:600;cursor:pointer;border:none;background:none}
+.log-list{max-height:130px;overflow-y:auto}
+.log-list::-webkit-scrollbar{width:3px}
+.log-list::-webkit-scrollbar-thumb{background:#D1D5DB;border-radius:3px}
+.log-row{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:.5px solid #F3F4F6;font-size:12.5px}
+.log-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.log-msg{flex:1;color:#374151}
+.log-time{font-size:10px;color:#9CA3AF;white-space:nowrap}
+.log-empty{padding:18px;text-align:center;color:#B0BEC5;font-size:13px}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--border);display:flex;padding-bottom:env(safe-area-inset-bottom,0);z-index:100}
+.nav-item{flex:1;padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;cursor:pointer;font-size:10px;font-weight:600;color:#B0BEC5;transition:color .15s}
+.nav-item.active{color:var(--green-dark)}
+.nav-item .ni-icon{font-size:22px}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 76px);left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,30,20,.9);color:#fff;padding:10px 20px;border-radius:22px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;pointer-events:none;z-index:999;white-space:nowrap;max-width:88%;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-row">
+      <div class="header-left">
+        <div class="header-icon">📞</div>
+        <div>
+          <div class="header-title">Power Dialer</div>
+          <div class="header-sub" id="headerSub">Import a list to begin</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="hdr-btn" id="importBtn" onclick="document.getElementById('fileInput').click()">+ Import</button>
+        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" style="display:none">
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="pbar"><div class="pbar-fill" id="pbarFill"></div></div>
+      <span class="pbar-text" id="pbarText">0/0</span>
+    </div>
+  </div>
+
+  <!-- SCROLL BODY -->
+  <div class="scroll-body">
+
+    <!-- IMPORT CARD (shown when no contacts) -->
+    <div class="import-card" id="importCard">
+      <div class="ic-icon">📂</div>
+      <div class="ic-title">Import your call list</div>
+      <div class="ic-sub">Tap to browse · CSV or Excel file</div>
+      <input type="file" id="fileInput2" accept=".csv,.xlsx,.xls">
+    </div>
+
+    <!-- CONTACT CARD -->
+    <div class="contact-card" id="contactCard" style="display:none">
+      <div class="cc-top">
+        <div class="cc-queue" id="queueBadge">1 / 0</div>
+        <div class="cc-avatar" id="ccAvatar">?</div>
+        <div class="cc-name" id="ccName">—</div>
+        <div class="cc-number" id="ccNumber">—</div>
+        <div class="cc-company" id="ccCompany"></div>
+      </div>
+      <div class="cc-actions">
+        <button class="cc-action" onclick="dialCurrent()">
+          <span class="ca-icon">📞</span>Call
+        </button>
+        <button class="cc-action" onclick="skipContact()">
+          <span class="ca-icon">⏭</span>Skip
+        </button>
+        <button class="cc-action" onclick="redialCurrent()">
+          <span class="ca-icon">🔄</span>Redial
+        </button>
+        <button class="cc-action" onclick="togglePause()">
+          <span class="ca-icon" id="pauseIcon">⏸</span><span id="pauseLabel">Pause</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- DIAL SECTION -->
+    <div class="dial-section" id="dialSection" style="display:none">
+      <div class="ds-label">Auto Dialer</div>
+      <div class="dial-btn-wrap">
+        <div class="pulse-ring" id="pulseRing"></div>
+        <button class="dial-btn" id="dialBtn" disabled>📞</button>
+      </div>
+      <div class="ds-hint" id="dialHint">Load contacts to start</div>
+    </div>
+
+    <!-- STATUS CHIPS -->
+    <div class="status-section" id="statusSection" style="display:none">
+      <div class="ss-title">Call Status</div>
+      <div class="chips-grid" id="chipsGrid">
+        <button class="chip c-green" data-val="Interested">😊 Interested</button>
+        <button class="chip c-lime" data-val="Sale">💰 Sale</button>
+        <button class="chip c-orange" data-val="Callback">📅 Callback</button>
+        <button class="chip c-amber" data-val="Busy">⏰ Busy</button>
+        <button class="chip c-grey" data-val="No Answer">📵 No Answer</button>
+        <button class="chip c-purple" data-val="Voicemail">📨 Voicemail</button>
+        <button class="chip c-cyan" data-val="Ans. Machine">📠 Ans. Machine</button>
+        <button class="chip c-brown" data-val="Wrong Number">❌ Wrong No.</button>
+        <button class="chip c-red" data-val="DNC">🚫 DNC</button>
+        <button class="chip c-blue" data-val="Other">📝 Other</button>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="notes-section" id="notesSection" style="display:none">
+      <label for="notesInput">Notes</label>
+      <textarea class="notes-input" id="notesInput" placeholder="Add a note about this call…"></textarea>
+    </div>
+
+    <!-- APPLY / SKIP -->
+    <div class="action-section" id="actionSection" style="display:none">
+      <button class="act-btn apply" id="applyBtn">✅ Apply & Next</button>
+      <button class="act-btn skip" id="skipBtn2">⏭ Skip</button>
+    </div>
+
+    <!-- BOTTOM CONTROLS -->
+    <div class="bottom-bar" id="bottomBar" style="display:none">
+      <button class="bb-btn redial" id="redialBtn2" onclick="redialCurrent()">🔄 Redial</button>
+      <button class="bb-btn pause" id="pauseBtn2" onclick="togglePause()">⏸ Pause</button>
+      <button class="bb-btn reset" onclick="resetAll()">↺ Reset</button>
+    </div>
+
+    <!-- LOG -->
+    <div class="log-section">
+      <div class="log-header">
+        <span>Call Log</span>
+        <button class="log-clear" onclick="clearLog()">Clear</button>
+      </div>
+      <div class="log-list" id="logList">
+        <div class="log-empty">No calls yet</div>
+      </div>
+    </div>
+
+  </div><!-- /scroll-body -->
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <button class="nav-item active"><span class="ni-icon">📞</span>Dialer</button>
+    <button class="nav-item"><span class="ni-icon">👥</span>Contacts</button>
+    <button class="nav-item"><span class="ni-icon">📊</span>Reports</button>
+    <button class="nav-item"><span class="ni-icon">⚙️</span>Settings</button>
+  </div>
+
+</div><!-- /phone -->
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+// ── STATE ──
+const S = { contacts:[], idx:0, paused:false, logs:[], disp:null, history:[] };
+
+// ── ELEMENTS ──
+const $=id=>document.getElementById(id);
+const fileInput=$('fileInput'), fileInput2=$('fileInput2');
+const importCard=$('importCard');
+const contactCard=$('contactCard'), dialSection=$('dialSection');
+const statusSection=$('statusSection'), notesSection=$('notesSection');
+const actionSection=$('actionSection'), bottomBar=$('bottomBar');
+const dialBtn=$('dialBtn'), pulseRing=$('pulseRing');
+const ccAvatar=$('ccAvatar'), ccName=$('ccName'), ccNumber=$('ccNumber'), ccCompany=$('ccCompany');
+const queueBadge=$('queueBadge'), pbarFill=$('pbarFill'), pbarText=$('pbarText');
+const headerSub=$('headerSub'), dialHint=$('dialHint');
+const chipsGrid=$('chipsGrid'), notesInput=$('notesInput');
+const applyBtn=$('applyBtn'), skipBtn2=$('skipBtn2');
+const pauseBtn2=$('pauseBtn2'), pauseIcon=$('pauseIcon'), pauseLabel=$('pauseLabel');
+const logList=$('logList'), toast=$('toast');
+
+// ── TOAST ──
+let toastT;
+function showToast(msg) {
+  clearTimeout(toastT);
+  toast.textContent = msg;
+  toast.classList.add('show');
+  toastT = setTimeout(()=>toast.classList.remove('show'), 2300);
+}
+
+// ── FILE INPUT (both) ──
+[fileInput, fileInput2].forEach(inp => {
+  inp.addEventListener('change', function(){
+    const file = this.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const wb = XLSX.read(new Uint8Array(ev.target.result),{type:'array'});
+        const json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+        if(!json.length){ showToast('❌ No data found'); return; }
+        const keys = Object.keys(json[0]);
+        const phoneCol = keys.find(h=>/phone|mobile|number|tel/i.test(h));
+        if(!phoneCol){ showToast('❌ No phone column found'); return; }
+        S.contacts = json.map(r=>({
+          phone: String(r[phoneCol]||'').trim(),
+          name: r.Name||r.name||r.NAME||'',
+          company: r.Company||r.company||r.Position||r.position||r.Title||r.title||'',
+          raw:r
+        })).filter(c=>c.phone.length>4);
+        S.idx=0; S.logs=[]; S.history=[]; S.disp=null;
+        clearChips(); notesInput.value='';
+        importCard.classList.add('has-file');
+        importCard.querySelector('.ic-icon').textContent='✅';
+        importCard.querySelector('.ic-title').textContent=`${S.contacts.length} contacts loaded`;
+        importCard.querySelector('.ic-sub').textContent=file.name;
+        showSections(true);
+        updateAll();
+        addLog(`Imported ${S.contacts.length} contacts`, '#00813A');
+        showToast(`✅ ${S.contacts.length} contacts loaded`);
+      } catch(e){ showToast('❌ '+e.message); }
+    };
+    reader.readAsArrayBuffer(file);
+  });
+});
+
+function showSections(on){
+  contactCard.style.display = on?'block':'none';
+  dialSection.style.display = on?'block':'none';
+  statusSection.style.display = on?'block':'none';
+  notesSection.style.display = on?'block':'none';
+  actionSection.style.display = on?'grid':'none';
+  bottomBar.style.display = on?'grid':'none';
+}
+
+// ── CURRENT CONTACT ──
+function getC(){ return S.contacts.length && S.idx < S.contacts.length ? S.contacts[S.idx] : null; }
+
+function initials(name){
+  if(!name) return '?';
+  const parts = name.trim().split(' ');
+  return parts.length>=2 ? (parts[0][0]+parts[parts.length-1][0]).toUpperCase() : name[0].toUpperCase();
+}
+
+function updateAll(){
+  const total=S.contacts.length, cur=S.idx;
+  pbarFill.style.width = total ? `${(cur/total)*100}%` : '0%';
+  pbarText.textContent = `${cur}/${total}`;
+
+  const c = getC();
+  if(!c){
+    queueBadge.textContent='Done!';
+    ccAvatar.textContent='✅'; ccName.textContent='All done!';
+    ccNumber.textContent=''; ccCompany.textContent='';
+    dialBtn.disabled=true; dialHint.textContent='List complete';
+    headerSub.textContent=`${cur}/${total} completed`;
+    pulseRing.classList.remove('active');
+    return;
+  }
+  queueBadge.textContent=`${cur+1} / ${total}`;
+  ccAvatar.textContent = initials(c.name);
+  ccName.textContent = c.name || 'Unknown';
+  ccNumber.textContent = c.phone;
+  ccCompany.textContent = c.company || '';
+  dialBtn.disabled = S.paused;
+  dialHint.textContent = S.paused ? 'Dialer paused' : 'Tap to call '+c.phone;
+  headerSub.textContent = `${cur}/${total} • ${S.paused?'Paused':'Active'}`;
+}
+
+// ── CHIPS ──
+function clearChips(){
+  S.disp=null;
+  chipsGrid.querySelectorAll('.chip').forEach(b=>b.classList.remove('sel'));
+}
+chipsGrid.addEventListener('click', e=>{
+  const btn = e.target.closest('.chip'); if(!btn) return;
+  const val = btn.dataset.val;
+  if(S.disp===val){ clearChips(); return; }
+  clearChips();
+  S.disp=val;
+  btn.classList.add('sel');
+});
+
+// ── DIAL ──
+function dialCurrent(){
+  const c=getC(); if(!c){ showToast('❌ No contact'); return; }
+  const clean=c.phone.replace(/[^0-9+]/g,'');
+  if(clean.length<4){ showToast('❌ Invalid number'); nextContact(); return; }
+  dialBtn.classList.add('calling'); dialBtn.textContent='⏳';
+  dialBtn.disabled=true;
+  pulseRing.classList.add('active');
+  addLog(`Dialing ${c.phone}${c.name?' · '+c.name:''}`, '#0071e3');
+  window.location.href=`tel:${clean}`;
+  setTimeout(()=>{
+    dialBtn.classList.remove('calling'); dialBtn.textContent='📞';
+    pulseRing.classList.remove('active');
+    updateAll();
+    showToast(`📞 Calling ${c.phone}`);
+  }, 2500);
+}
+
+function applyAndNext(){
+  const c=getC(); if(!c){ showToast('❌ No active contact'); return; }
+  if(!S.disp){ showToast('⚠️ Select a call status'); return; }
+  const note=notesInput.value.trim();
+  addLog(`${c.phone} → ${S.disp}${note?' · "'+note+'"':''}`, statusColor(S.disp));
+  S.history.push({contact:{...c}, status:S.disp, note, ts:new Date().toISOString()});
+  showToast(`✅ ${S.disp} saved`);
+  clearChips(); notesInput.value='';
+  setTimeout(nextContact, 280);
+}
+
+function nextContact(){
+  if(S.paused){ showToast('⏸ Paused — resume to continue'); return; }
+  S.idx++;
+  updateAll(); clearChips(); notesInput.value='';
+  if(S.idx>=S.contacts.length){ showToast('🎉 All contacts done!'); addLog('All contacts processed','#00813A'); }
+}
+
+function skipContact(){
+  const c=getC(); if(!c) return;
+  addLog(`Skipped ${c.phone}`, '#9E9E9E');
+  showToast(`Skipped ${c.phone}`);
+  nextContact();
+}
+
+function redialCurrent(){ dialCurrent(); }
+
+function togglePause(){
+  S.paused=!S.paused;
+  pauseIcon.textContent = S.paused?'▶':'⏸';
+  pauseLabel.textContent = S.paused?'Resume':'Pause';
+  pauseBtn2.classList.toggle('on', S.paused);
+  pauseBtn2.textContent = S.paused?'▶ Resume':'⏸ Pause';
+  showToast(S.paused?'⏸ Paused':'▶ Resumed');
+  addLog(S.paused?'Dialer paused':'Dialer resumed', S.paused?'#FF9800':'#00813A');
+  updateAll();
+}
+
+function resetAll(){
+  if(!S.contacts.length) return;
+  if(!confirm('Reset list position and clear log?')) return;
+  S.idx=0; S.paused=false; S.logs=[]; S.history=[]; S.disp=null;
+  clearChips(); notesInput.value='';
+  pauseIcon.textContent='⏸'; pauseLabel.textContent='Pause';
+  pauseBtn2.classList.remove('on'); pauseBtn2.textContent='⏸ Pause';
+  updateAll(); renderLog();
+  showToast('↺ Reset complete');
+}
+
+// ── LOG ──
+function statusColor(s){
+  const m={'Interested':'#2E7D32','Sale':'#33691E','Callback':'#E65100','Busy':'#F57F17','No Answer':'#424242','Voicemail':'#6A1B9A','Ans. Machine':'#006064','Wrong Number':'#4E342E','DNC':'#B71C1C','Other':'#0D47A1'};
+  return m[s]||'#555';
+}
+function addLog(msg, color='#555'){
+  const t=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  S.logs.unshift({msg,color,t});
+  renderLog();
+}
+function renderLog(){
+  if(!S.logs.length){ logList.innerHTML='<div class="log-empty">No calls yet</div>'; return; }
+  logList.innerHTML=S.logs.slice(0,60).map(e=>`
+    <div class="log-row">
+      <div class="log-dot" style="background:${e.color}"></div>
+      <div class="log-msg">${e.msg}</div>
+      <div class="log-time">${e.t}</div>
+    </div>`).join('');
+}
+function clearLog(){ S.logs=[]; renderLog(); }
+
+// ── EVENTS ──
+dialBtn.addEventListener('click', dialCurrent);
+applyBtn.addEventListener('click', applyAndNext);
+skipBtn2.addEventListener('click', skipContact);
+
+// ── INIT ──
+renderLog();
+</script>
+</body>
+</html>
