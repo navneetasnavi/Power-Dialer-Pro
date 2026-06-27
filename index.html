@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
-  --green:#00C853;--green-dark:#007B33;--gh:#00813A;
+  --green:#00C853;--gd:#007B33;--gh:#00813A;
   --bg:#F0F2F5;--card:#fff;--text:#1C1C1E;--sub:#6B7280;
   --border:#E5E7EB;--red:#EF5350;--orange:#FF9800;--blue:#2196F3;
   --purple:#9C27B0;--amber:#FFC107;--cyan:#00BCD4;--brown:#795548;
@@ -24,13 +24,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .hdr-sub{color:rgba(255,255,255,.72);font-size:11px;margin-top:1px}
 .hdr-btns{display:flex;gap:6px}
 .hdr-btn{background:rgba(255,255,255,.18);border:none;border-radius:8px;padding:7px 11px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
-.hdr-btn:active{background:rgba(255,255,255,.28)}
+.hdr-btn:active{background:rgba(255,255,255,.3)}
 .prow{margin-top:10px;display:flex;align-items:center;gap:8px}
 .pbar{flex:1;height:5px;background:rgba(255,255,255,.25);border-radius:3px;overflow:hidden}
 .pbar-f{height:100%;background:#fff;border-radius:3px;width:0%;transition:width .4s}
 .pbar-t{color:rgba(255,255,255,.9);font-size:11px;font-weight:600;min-width:36px;text-align:right}
 
-/* TABS (pages) */
+/* SAVE INDICATOR */
+.save-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#aaffaa;margin-left:6px;vertical-align:middle;transition:background .3s}
+.save-dot.saving{background:#FFD54F;animation:blink .5s infinite}
+.save-dot.saved{background:#aaffaa}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* PAGES */
 .page{display:none;flex:1;overflow-y:auto;padding:0 0 82px;-webkit-overflow-scrolling:touch}
 .page.active{display:block}
 .page::-webkit-scrollbar{display:none}
@@ -39,7 +45,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .card{background:#fff;border-radius:16px;margin:12px 14px;box-shadow:0 1px 6px rgba(0,0,0,.07);overflow:hidden}
 .card-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 14px 10px;border-bottom:1px solid var(--border)}
 .card-hdr span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub)}
-.card-hdr button{font-size:12px;color:var(--green-dark);font-weight:600;border:none;background:none;cursor:pointer}
+.card-hdr button{font-size:12px;color:var(--gd);font-weight:600;border:none;background:none;cursor:pointer}
 
 /* IMPORT */
 .import-zone{margin:12px 14px;background:#fff;border-radius:16px;border:2px dashed #B0BEC5;padding:22px;text-align:center;position:relative;cursor:pointer;transition:all .2s}
@@ -48,7 +54,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .iz-ico{font-size:32px;margin-bottom:6px}
 .iz-t{font-size:14px;font-weight:600;color:#37474F}
 .iz-s{font-size:12px;color:#90A4AE;margin-top:3px}
-.import-zone.ok .iz-t{color:var(--green-dark)}
+.import-zone.ok .iz-t{color:var(--gd)}
 
 /* CONTACT CARD */
 .cc-top{background:var(--gh);padding:18px 16px 16px;position:relative}
@@ -114,36 +120,66 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .c-pause.on{background:#FFF8E1;color:#F57F17}
 .c-reset{background:#FFEBEE;color:#C62828}
 
-/* LOG ROWS */
+/* LOG */
 .log-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:.5px solid #F3F4F6}
 .log-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 .log-info{flex:1}
 .log-msg{font-size:13px;color:#374151;font-weight:500}
-.log-note{font-size:11px;color:var(--sub);margin-top:1px}
 .log-time{font-size:10px;color:#9CA3AF;white-space:nowrap}
-.empty-state{padding:40px 20px;text-align:center;color:#B0BEC5;font-size:14px;line-height:1.8}
-.empty-ico{font-size:40px;margin-bottom:10px}
+.empty-state{padding:36px 20px;text-align:center;color:#B0BEC5;font-size:14px;line-height:1.8}
+.empty-ico{font-size:38px;margin-bottom:10px}
 
-/* CONTACTS TAB */
-.search-wrap{padding:10px 14px 4px;position:relative}
-.search-inp{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:10px 14px 10px 38px;font-size:14px;outline:none;background:#fff;color:var(--text);font-family:inherit}
-.search-inp:focus{border-color:var(--green)}
-.search-ico{position:absolute;left:26px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
-.contact-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:.5px solid #F3F4F6;cursor:pointer;transition:background .15s}
-.contact-row:active{background:#F5F5F5}
-.cr-av{width:40px;height:40px;border-radius:50%;background:var(--gh);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0}
-.cr-info{flex:1}
-.cr-name{font-size:14px;font-weight:600;color:var(--text)}
-.cr-num{font-size:12px;color:var(--sub);margin-top:1px}
-.cr-status{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px}
+/* ── LOAN CALCULATOR ── */
+.loan-hero{background:var(--gh);padding:20px 16px 24px;text-align:center}
+.loan-hero h2{color:#fff;font-size:18px;font-weight:700;margin-bottom:4px}
+.loan-hero p{color:rgba(255,255,255,.72);font-size:13px}
+.loan-form{margin:14px 14px 0}
+.lf-group{margin-bottom:12px}
+.lf-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin-bottom:6px;display:block}
+.lf-inp-wrap{position:relative}
+.lf-prefix{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;color:#546E7A;font-weight:600;pointer-events:none}
+.lf-inp{width:100%;padding:13px 14px 13px 28px;border:1.5px solid var(--border);border-radius:12px;font-size:16px;outline:none;font-family:inherit;color:var(--text);background:#fff;transition:border-color .2s;-webkit-appearance:none}
+.lf-inp.no-prefix{padding-left:14px}
+.lf-inp:focus{border-color:var(--green)}
+.lf-suffix{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#9E9E9E;pointer-events:none}
+.lf-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.calc-btn{width:100%;padding:15px;background:var(--green);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:14px;transition:transform .12s;-webkit-appearance:none;box-shadow:0 3px 14px rgba(0,200,83,.3)}
+.calc-btn:active{transform:scale(.97)}
+.clear-btn{width:100%;padding:13px;background:#ECEFF1;color:#546E7A;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:14px;transition:transform .12s;-webkit-appearance:none}
+.clear-btn:active{transform:scale(.97)}
 
-/* REPORTS TAB */
+/* RESULTS */
+.results-card{margin:0 14px 14px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.rc-top{background:linear-gradient(135deg,#00813A 0%,#00a550 100%);padding:16px;text-align:center}
+.rc-top-lbl{color:rgba(255,255,255,.75);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px}
+.rc-top-val{color:#fff;font-size:32px;font-weight:700;margin-top:4px}
+.rc-top-sub{color:rgba(255,255,255,.7);font-size:12px;margin-top:3px}
+.rc-rows{padding:4px 0}
+.rc-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:.5px solid #F3F4F6}
+.rc-row:last-child{border-bottom:none}
+.rc-lbl{font-size:14px;color:var(--sub)}
+.rc-val{font-size:15px;font-weight:700;color:var(--text)}
+.rc-val.green{color:#2E7D32}
+.rc-val.red{color:#C62828}
+.rc-val.blue{color:#0D47A1}
+.rc-val.orange{color:#E65100}
+
+/* amort table */
+.amort-card{margin:0 14px 14px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+.amort-hdr{display:grid;grid-template-columns:40px 1fr 1fr 1fr;gap:4px;padding:10px 12px;background:#F0F2F5;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--sub)}
+.amort-row{display:grid;grid-template-columns:40px 1fr 1fr 1fr;gap:4px;padding:10px 12px;border-bottom:.5px solid #F3F4F6;font-size:12px;color:var(--text)}
+.amort-row:last-child{border-bottom:none}
+.amort-row.last-row{background:#F0FFF4;font-weight:700}
+.amort-row span:not(:first-child){text-align:right}
+.amort-hdr span:not(:first-child){text-align:right}
+
+/* REPORTS */
 .stats-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px 14px}
 .stat-card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
 .stat-val{font-size:28px;font-weight:700;color:var(--text)}
 .stat-lbl{font-size:12px;color:var(--sub);margin-top:3px}
 .stat-ico{font-size:22px;margin-bottom:6px}
-.chart-bar-wrap{padding:0 14px 10px}
+.chart-bar-wrap{padding:12px 14px 10px}
 .chart-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin-bottom:10px}
 .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .bar-lbl{font-size:12px;color:var(--sub);width:80px;text-align:right;flex-shrink:0}
@@ -156,7 +192,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .exp-csv{background:#E8F5E9;color:#2E7D32}
 .exp-json{background:#E3F2FD;color:#0D47A1}
 
-/* SETTINGS TAB */
+/* SETTINGS */
 .setting-group{margin:12px 14px}
 .sg-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--sub);margin-bottom:8px;padding:0 4px}
 .sg-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07)}
@@ -175,23 +211,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 /* BOTTOM NAV */
 .bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--border);display:flex;padding-bottom:env(safe-area-inset-bottom,0);z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.06)}
 .nav-item{flex:1;padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;cursor:pointer;font-size:10px;font-weight:600;color:#B0BEC5;transition:color .15s}
-.nav-item.active{color:var(--green-dark)}
+.nav-item.active{color:var(--gd)}
 .nav-ico{font-size:22px}
-.nav-dot{width:5px;height:5px;border-radius:50%;background:var(--red);position:absolute;top:8px;right:calc(50% - 18px)}
 
 /* TOAST */
-.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 78px);left:50%;transform:translateX(-50%) translateY(16px);background:rgba(15,25,15,.9);color:#fff;padding:10px 20px;border-radius:22px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;pointer-events:none;z-index:999;white-space:nowrap;max-width:88%;text-align:center}
+.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px)+78px);left:50%;transform:translateX(-50%) translateY(16px);background:rgba(15,25,15,.9);color:#fff;padding:10px 20px;border-radius:22px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;pointer-events:none;z-index:999;white-space:nowrap;max-width:88%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* STATUS COLORS */
+/* STATUS BADGE COLORS */
 .s-Interested{background:#E8F5E9;color:#2E7D32}
 .s-Sale{background:#F9FBE7;color:#33691E}
 .s-Callback{background:#FFF3E0;color:#E65100}
-.s-Busy{background:#FFFDE7;color:#F57F17}
-.s-No-Answer{background:#F5F5F5;color:#424242}
+.s-Not Interested{background:#FFFDE7;color:#F57F17}
+.s-No-Answer,.s-NoAnswer{background:#F5F5F5;color:#424242}
 .s-Voicemail{background:#F3E5F5;color:#6A1B9A}
-.s-Ans-Machine{background:#E0F7FA;color:#006064}
-.s-Wrong-Number{background:#EFEBE9;color:#4E342E}
+.s-Suspecious,.s-AnsMachine{background:#E0F7FA;color:#006064}
+.s-Wrong-Number,.s-WrongNumber{background:#EFEBE9;color:#4E342E}
 .s-DNC{background:#FFEBEE;color:#B71C1C}
 .s-Other{background:#E3F2FD;color:#0D47A1}
 .s-New{background:#F0F2F5;color:#546E7A}
@@ -206,7 +241,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="hdr-left">
       <div class="hdr-ico">📞</div>
       <div>
-        <div class="hdr-title">Power Dialer Pro</div>
+        <div class="hdr-title">Power Dialer Pro <span class="save-dot saved" id="saveDot" title="Auto-save"></span></div>
         <div class="hdr-sub" id="hdrSub">Import a list to begin</div>
       </div>
     </div>
@@ -223,8 +258,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <!-- PAGE: DIALER -->
 <div class="page active" id="pg-dialer">
-
-  <!-- Import zone -->
   <div class="import-zone" id="importZone">
     <div class="iz-ico">📂</div>
     <div class="iz-t">Import your call list</div>
@@ -232,7 +265,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <input type="file" id="fi2" accept=".csv,.xlsx,.xls">
   </div>
 
-  <!-- Contact Card -->
   <div class="card" id="ccCard" style="display:none">
     <div class="cc-top">
       <div class="cc-badge" id="ccBadge">1/0</div>
@@ -249,7 +281,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
   </div>
 
-  <!-- Dial Button -->
   <div class="dial-sec" id="dialSec" style="display:none">
     <div class="dl-lbl">Auto Dialer</div>
     <div class="dl-wrap">
@@ -259,14 +290,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="dl-hint" id="dlHint">Load contacts to begin</div>
   </div>
 
-  <!-- Status Chips -->
   <div class="card" id="chipCard" style="display:none">
     <div class="card-hdr"><span>Call Status</span><button onclick="clearChips()">Clear</button></div>
     <div class="chips" id="chipsWrap">
       <button class="chip cg" data-v="Interested">😊 Interested</button>
       <button class="chip cl" data-v="Sale">💰 Sale</button>
       <button class="chip co" data-v="Callback">📅 Callback</button>
-      <button class="chip ca" data-v="Busy">⏰ Busy</button>
+      <button class="chip ca" data-v="Not Interested">⏰ Not Interested</button>
       <button class="chip cgr" data-v="No Answer">📵 No Answer</button>
       <button class="chip cp" data-v="Voicemail">📨 Voicemail</button>
       <button class="chip cc" data-v="Ans. Machine">📠 Ans. Machine</button>
@@ -276,7 +306,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
   </div>
 
-  <!-- Notes -->
   <div id="notesSec" style="display:none">
     <div class="notes-wrap">
       <div class="notes-lbl">Notes</div>
@@ -284,38 +313,91 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
   </div>
 
-  <!-- Apply / Skip -->
   <div class="act-row" id="actRow" style="display:none">
     <button class="act-btn act-apply" onclick="doApply()">✅ Apply & Next</button>
     <button class="act-btn act-skip" onclick="doSkip()">⏭ Skip</button>
   </div>
 
-  <!-- Controls -->
   <div class="ctrl-row" id="ctrlRow" style="display:none">
     <button class="ctrl-btn c-redial" onclick="doDial()">🔄 Redial</button>
     <button class="ctrl-btn c-pause" id="pauseBtn2" onclick="doTogglePause()">⏸ Pause</button>
     <button class="ctrl-btn c-reset" onclick="doReset()">↺ Reset</button>
   </div>
 
-  <!-- Log -->
   <div class="card">
     <div class="card-hdr"><span>Call Log</span><button onclick="clearLog()">Clear</button></div>
     <div id="logWrap"><div class="empty-state"><div class="empty-ico">📋</div>No calls yet</div></div>
   </div>
 </div>
 
-<!-- PAGE: CONTACTS -->
-<div class="page" id="pg-contacts">
-  <div class="search-wrap">
-    <span class="search-ico">🔍</span>
-    <input class="search-inp" id="searchInp" placeholder="Search name or number…" oninput="renderContacts()">
+<!-- PAGE: LOAN CALCULATOR -->
+<div class="page" id="pg-loan">
+  <div class="loan-hero">
+    <h2>💵 Payday Loan Calculator</h2>
+    <p>Calculate your payday loan estimate below</p>
   </div>
-  <div class="card" style="margin-top:4px">
-    <div class="card-hdr">
-      <span id="contactsCountLbl">0 Contacts</span>
-      <button onclick="exportCSV()">📤 Export CSV</button>
+
+  <div class="loan-form">
+    <div class="lf-group">
+      <label class="lf-label">Loan Amount</label>
+      <div class="lf-inp-wrap">
+        <span class="lf-prefix">$</span>
+        <input class="lf-inp" type="number" id="loanAmt" placeholder="500" min="0" inputmode="decimal">
+      </div>
     </div>
-    <div id="contactsWrap"><div class="empty-state"><div class="empty-ico">👥</div>Import a list first</div></div>
+
+    <div class="lf-row2">
+      <div class="lf-group" style="margin-bottom:0">
+        <label class="lf-label">Interest Rate (%)</label>
+        <div class="lf-inp-wrap">
+          <input class="lf-inp no-prefix" type="number" id="loanRate" placeholder="15" min="0" inputmode="decimal">
+          <span class="lf-suffix">%</span>
+        </div>
+      </div>
+      <div class="lf-group" style="margin-bottom:0">
+        <label class="lf-label">Term (Months)</label>
+        <div class="lf-inp-wrap">
+          <input class="lf-inp no-prefix" type="number" id="loanTerm" placeholder="12" min="1" inputmode="decimal">
+          <span class="lf-suffix">mo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lf-group" style="margin-top:12px">
+      <label class="lf-label">Starting Day</label>
+      <div class="lf-inp-wrap">
+        <input class="lf-inp no-prefix" type="date" id="loanStart">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcLoan()">📊 Calculate</button>
+    <button class="clear-btn" onclick="clearLoan()">✕ Clear</button>
+  </div>
+
+  <!-- Results -->
+  <div id="loanResults" style="display:none">
+    <div class="results-card">
+      <div class="rc-top">
+        <div class="rc-top-lbl">Monthly Payment</div>
+        <div class="rc-top-val" id="lr-monthly">$0.00</div>
+        <div class="rc-top-sub" id="lr-sub">per month</div>
+      </div>
+      <div class="rc-rows">
+        <div class="rc-row"><span class="rc-lbl">Loan Amount</span><span class="rc-val blue" id="lr-principal">$0</span></div>
+        <div class="rc-row"><span class="rc-lbl">Number of Payments</span><span class="rc-val" id="lr-payments">0</span></div>
+        <div class="rc-row"><span class="rc-lbl">Interest to be Paid</span><span class="rc-val red" id="lr-interest">$0</span></div>
+        <div class="rc-row"><span class="rc-lbl">Total Amount Payable</span><span class="rc-val orange" id="lr-total">$0</span></div>
+        <div class="rc-row"><span class="rc-lbl">Payoff Date</span><span class="rc-val green" id="lr-payoff">—</span></div>
+      </div>
+    </div>
+
+    <div class="amort-card">
+      <div class="card-hdr"><span>Payment Schedule</span></div>
+      <div class="amort-hdr">
+        <span>#</span><span>Payment</span><span style="text-align:right">Interest</span><span style="text-align:right">Balance</span>
+      </div>
+      <div id="amortBody"></div>
+    </div>
   </div>
 </div>
 
@@ -329,16 +411,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="stat-card"><div class="stat-ico">📅</div><div class="stat-val" id="st-cb">0</div><div class="stat-lbl">Callbacks</div></div>
     <div class="stat-card"><div class="stat-ico">🚫</div><div class="stat-val" id="st-dnc">0</div><div class="stat-lbl">DNC</div></div>
   </div>
-
   <div class="card">
     <div class="card-hdr"><span>Disposition Breakdown</span></div>
-    <div class="chart-bar-wrap" id="chartWrap" style="padding-top:12px">
+    <div class="chart-bar-wrap" id="chartWrap">
       <div class="empty-state"><div class="empty-ico">📊</div>No calls logged yet</div>
     </div>
   </div>
-
   <div class="card" style="margin-top:0">
-    <div class="card-hdr"><span>Export Report</span></div>
+    <div class="card-hdr"><span>Export</span></div>
     <div class="export-row">
       <button class="exp-btn exp-csv" onclick="exportCSV()">📄 Export CSV</button>
       <button class="exp-btn exp-json" onclick="exportJSON()">📦 Export JSON</button>
@@ -365,7 +445,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       </div>
     </div>
   </div>
-
+  <div class="setting-group">
+    <div class="sg-title">Auto-Save</div>
+    <div class="sg-card">
+      <div class="setting-row">
+        <div class="sr-left"><span class="sr-ico">💾</span><div><div class="sr-label">Auto-Save Enabled</div><div class="sr-sub">Progress saved to browser storage</div></div></div>
+        <span class="sr-right" style="color:var(--green);font-weight:700">ON</span>
+      </div>
+      <div class="setting-row" onclick="clearSavedData()">
+        <div class="sr-left"><span class="sr-ico">🗑</span><div><div class="sr-label" style="color:#C62828">Clear Saved Data</div><div class="sr-sub">Wipe browser storage</div></div></div>
+        <div class="sr-right">›</div>
+      </div>
+    </div>
+  </div>
   <div class="setting-group">
     <div class="sg-title">Data</div>
     <div class="sg-card">
@@ -374,11 +466,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div class="sr-right">›</div>
       </div>
       <div class="setting-row" onclick="exportJSON()">
-        <div class="sr-left"><span class="sr-ico">📦</span><div><div class="sr-label">Export Full Data (JSON)</div><div class="sr-sub">All contacts and history</div></div></div>
-        <div class="sr-right">›</div>
-      </div>
-      <div class="setting-row" onclick="importFresh()">
-        <div class="sr-left"><span class="sr-ico">📂</span><div><div class="sr-label">Import New List</div><div class="sr-sub">Replace current contact list</div></div></div>
+        <div class="sr-left"><span class="sr-ico">📦</span><div><div class="sr-label">Export Full Data (JSON)</div><div class="sr-sub">All contacts with history</div></div></div>
         <div class="sr-right">›</div>
       </div>
       <div class="setting-row" onclick="doReset()">
@@ -387,12 +475,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       </div>
     </div>
   </div>
-
   <div class="setting-group">
     <div class="sg-title">About</div>
     <div class="sg-card">
       <div class="setting-row">
-        <div class="sr-left"><span class="sr-ico">📞</span><div><div class="sr-label">Power Dialer Pro</div><div class="sr-sub">Version 2.0 · Code by navneetasnavi</div></div></div>
+        <div class="sr-left"><span class="sr-ico">📞</span><div><div class="sr-label">Power Dialer Pro</div><div class="sr-sub">v3.0 · Auto-save · Loan Calc · iPhone XR</div></div></div>
       </div>
     </div>
   </div>
@@ -401,38 +488,99 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <!-- BOTTOM NAV -->
 <div class="bot-nav">
   <button class="nav-item active" onclick="switchTab('dialer',this)"><span class="nav-ico">📞</span>Dialer</button>
-  <button class="nav-item" onclick="switchTab('contacts',this)"><span class="nav-ico">👥</span>Contacts</button>
+  <button class="nav-item" onclick="switchTab('loan',this)"><span class="nav-ico">💵</span>Loan Calc</button>
   <button class="nav-item" onclick="switchTab('reports',this)"><span class="nav-ico">📊</span>Reports</button>
   <button class="nav-item" onclick="switchTab('settings',this)"><span class="nav-ico">⚙️</span>Settings</button>
 </div>
+</div>
 
-</div><!-- /app -->
 <div class="toast" id="toast"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
-// ── STATE ──
+// ════════════════════════════════
+//  STATE
+// ════════════════════════════════
 const S = {
   contacts:[], idx:0, paused:false,
   logs:[], disp:null, history:[],
   settings:{ skip:true, req:true, note:true }
 };
+const SAVE_KEY = 'pdpro_v3';
 
-// ── TOAST ──
+// ════════════════════════════════
+//  AUTO-SAVE  (localStorage)
+// ════════════════════════════════
+let saveTimer;
+function scheduleSave(){
+  const dot = document.getElementById('saveDot');
+  dot.className='save-dot saving';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    try{
+      const payload = {
+        contacts: S.contacts,
+        idx: S.idx,
+        paused: S.paused,
+        logs: S.logs.slice(0,200),
+        history: S.history,
+        settings: S.settings,
+        savedAt: Date.now()
+      };
+      localStorage.setItem(SAVE_KEY, JSON.stringify(payload));
+      dot.className='save-dot saved';
+    } catch(e){ dot.className='save-dot'; }
+  }, 800);
+}
+
+function loadSaved(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return false;
+    const p = JSON.parse(raw);
+    if(!p.contacts||!p.contacts.length) return false;
+    // Restore
+    S.contacts = p.contacts;
+    S.idx = Math.min(p.idx||0, S.contacts.length);
+    S.paused = p.paused||false;
+    S.logs = p.logs||[];
+    S.history = p.history||[];
+    if(p.settings) Object.assign(S.settings, p.settings);
+    return true;
+  } catch(e){ return false; }
+}
+
+function clearSavedData(){
+  if(!confirm('Clear all saved browser data?')) return;
+  localStorage.removeItem(SAVE_KEY);
+  toast('🗑 Saved data cleared');
+}
+
+// ════════════════════════════════
+//  TOAST
+// ════════════════════════════════
 let toastT;
-function toast(msg){ clearTimeout(toastT); const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); toastT=setTimeout(()=>t.classList.remove('show'),2400); }
+function toast(msg){
+  clearTimeout(toastT);
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  toastT=setTimeout(()=>t.classList.remove('show'),2400);
+}
 
-// ── TAB SWITCH ──
+// ════════════════════════════════
+//  TAB SWITCH
+// ════════════════════════════════
 function switchTab(name,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
   document.getElementById('pg-'+name).classList.add('active');
   btn.classList.add('active');
   if(name==='reports') updateReports();
-  if(name==='contacts') renderContacts();
 }
 
-// ── FILE IMPORT ──
+// ════════════════════════════════
+//  FILE IMPORT
+// ════════════════════════════════
 function handleFile(file){
   if(!file) return;
   const reader=new FileReader();
@@ -443,7 +591,7 @@ function handleFile(file){
       if(!json.length){ toast('❌ No data found'); return; }
       const keys=Object.keys(json[0]);
       const phoneCol=keys.find(h=>/phone|mobile|number|tel/i.test(h));
-      if(!phoneCol){ toast('❌ No phone column (Phone/Mobile/Number/Tel)'); return; }
+      if(!phoneCol){ toast('❌ No phone column found (Phone/Mobile/Number/Tel)'); return; }
       S.contacts=json.map(r=>({
         phone:String(r[phoneCol]||'').trim(),
         name:r.Name||r.name||r.NAME||'',
@@ -461,21 +609,27 @@ function handleFile(file){
       updateAll(); renderLog();
       addLog(`Imported ${S.contacts.length} contacts from ${file.name}`,'#00813A');
       toast(`✅ ${S.contacts.length} contacts loaded`);
+      scheduleSave();
     }catch(e){ toast('❌ '+e.message); }
   };
   reader.readAsArrayBuffer(file);
 }
 document.getElementById('fi1').addEventListener('change',function(){ handleFile(this.files[0]); });
 document.getElementById('fi2').addEventListener('change',function(){ handleFile(this.files[0]); });
-function importFresh(){ document.getElementById('fi1').click(); }
 
 function showDialerSections(on){
-  ['ccCard','dialSec','chipCard','notesSec','actRow','ctrlRow'].forEach(id=>{
-    document.getElementById(id).style.display=on?(id==='actRow'||id==='ctrlRow'?'grid':'block'):'none';
-  });
+  const style=(id,v)=>{ const el=document.getElementById(id); if(el) el.style.display=v; };
+  style('ccCard', on?'block':'none');
+  style('dialSec', on?'block':'none');
+  style('chipCard', on?'block':'none');
+  style('notesSec', on?'block':'none');
+  style('actRow', on?'grid':'none');
+  style('ctrlRow', on?'grid':'none');
 }
 
-// ── CONTACT HELPERS ──
+// ════════════════════════════════
+//  CONTACT HELPERS
+// ════════════════════════════════
 function getC(){ return S.contacts.length&&S.idx<S.contacts.length?S.contacts[S.idx]:null; }
 function initials(n){ if(!n)return'?'; const p=n.trim().split(' '); return(p.length>=2?p[0][0]+p[p.length-1][0]:n[0]).toUpperCase(); }
 
@@ -485,8 +639,8 @@ function updateAll(){
   document.getElementById('pbarT').textContent=`${cur}/${total}`;
   const c=getC();
   if(!c){
-    document.getElementById('ccBadge').textContent='Done!';
-    document.getElementById('ccAv').textContent='✅';
+    document.getElementById('ccBadge').textContent=total?'Done!':'—';
+    document.getElementById('ccAv').textContent=total?'✅':'?';
     document.getElementById('ccName').textContent=total?'All done!':'—';
     document.getElementById('ccNum').textContent='';
     document.getElementById('ccCo').textContent='';
@@ -506,8 +660,13 @@ function updateAll(){
   document.getElementById('hdrSub').textContent=`${cur+1}/${total} · ${S.paused?'Paused':'Active'}`;
 }
 
-// ── CHIPS ──
-function clearChips(){ S.disp=null; document.querySelectorAll('.chip').forEach(b=>b.classList.remove('sel')); }
+// ════════════════════════════════
+//  CHIPS
+// ════════════════════════════════
+function clearChips(){
+  S.disp=null;
+  document.querySelectorAll('.chip').forEach(b=>b.classList.remove('sel'));
+}
 document.getElementById('chipsWrap').addEventListener('click',e=>{
   const btn=e.target.closest('.chip'); if(!btn) return;
   const v=btn.dataset.v;
@@ -515,42 +674,60 @@ document.getElementById('chipsWrap').addEventListener('click',e=>{
   clearChips(); S.disp=v; btn.classList.add('sel');
 });
 
-// ── DIAL ──
+// ════════════════════════════════
+//  DIAL ACTIONS
+// ════════════════════════════════
 function doDial(){
-  const c=getC(); if(!c){ toast('❌ No contact'); return; }
+  const c=getC(); if(!c){ toast('❌ No contact to dial'); return; }
   const clean=c.phone.replace(/[^0-9+]/g,'');
-  if(clean.length<4){ if(S.settings.skip){ toast('⏭ Skipping invalid number'); nextC(); } else toast('❌ Invalid number'); return; }
+  if(clean.length<5){
+    if(S.settings.skip){ toast('⏭ Skipping invalid number'); doSkip(); }
+    else toast('❌ Invalid number');
+    return;
+  }
   const btn=document.getElementById('dlBtn');
   btn.classList.add('ringing'); btn.textContent='📲'; btn.disabled=true;
   document.getElementById('pulseEl').classList.add('on');
   addLog(`Dialing ${c.phone}${c.name?' · '+c.name:''}`, '#1565C0');
   window.location.href=`tel:${clean}`;
-  setTimeout(()=>{ btn.classList.remove('ringing'); btn.textContent='📞'; document.getElementById('pulseEl').classList.remove('on'); updateAll(); },2500);
+  setTimeout(()=>{
+    btn.classList.remove('ringing'); btn.textContent='📞';
+    document.getElementById('pulseEl').classList.remove('on');
+    updateAll();
+  },2500);
   toast(`📞 Calling ${c.phone}`);
 }
 
 function doApply(){
   const c=getC(); if(!c){ toast('❌ No active contact'); return; }
-  if(S.settings.req && !S.disp){ toast('⚠️ Select a call status first'); return; }
+  if(S.settings.req&&!S.disp){ toast('⚠️ Select a call status first'); return; }
   const note=document.getElementById('notesTA').value.trim();
   const status=S.disp||'Other';
   c.status=status; c.note=note;
   addLog(`${c.name||c.phone} → ${status}${note?' · "'+note+'"':''}`, statusColor(status));
-  S.history.push({contact:{...c},status,note,ts:new Date().toISOString()});
+  S.history.push({contact:{name:c.name,phone:c.phone,company:c.company},status,note,ts:new Date().toISOString()});
   toast(`✅ ${status} saved`);
   clearChips();
   if(S.settings.note) document.getElementById('notesTA').value='';
-  setTimeout(nextC,280);
+  scheduleSave();
+  setTimeout(nextC, 280);
 }
 
 function nextC(){
   if(S.paused){ toast('⏸ Paused — tap Resume'); return; }
-  S.idx++; updateAll(); clearChips();
+  S.idx++;
+  updateAll(); clearChips();
   if(S.settings.note) document.getElementById('notesTA').value='';
   if(S.idx>=S.contacts.length){ toast('🎉 All contacts done!'); addLog('All contacts processed','#00813A'); }
+  scheduleSave();
 }
 
-function doSkip(){ const c=getC(); if(!c) return; addLog(`Skipped ${c.phone}`,'#9E9E9E'); toast(`Skipped ${c.phone}`); nextC(); }
+function doSkip(){
+  const c=getC(); if(!c) return;
+  addLog(`Skipped ${c.phone}`,'#9E9E9E');
+  toast(`Skipped`);
+  nextC();
+}
 
 function doTogglePause(){
   S.paused=!S.paused;
@@ -561,12 +738,12 @@ function doTogglePause(){
   pb.textContent=S.paused?'▶ Resume':'⏸ Pause';
   addLog(S.paused?'Dialer paused':'Dialer resumed',S.paused?'#FF9800':'#00813A');
   toast(S.paused?'⏸ Paused':'▶ Resumed');
-  updateAll();
+  updateAll(); scheduleSave();
 }
 
 function doReset(){
   if(!S.contacts.length&&!S.logs.length){ toast('Nothing to reset'); return; }
-  if(!confirm('Reset everything? This clears all data.')) return;
+  if(!confirm('Reset everything? This cannot be undone.')) return;
   S.contacts=[]; S.idx=0; S.paused=false; S.logs=[]; S.history=[]; S.disp=null;
   clearChips(); document.getElementById('notesTA').value='';
   document.getElementById('pauseAi').textContent='⏸';
@@ -579,14 +756,16 @@ function doReset(){
   iz.querySelector('.iz-t').textContent='Import your call list';
   iz.querySelector('.iz-s').textContent='Tap to browse · CSV or Excel';
   showDialerSections(false);
-  updateAll(); renderLog(); renderContacts(); updateReports();
+  updateAll(); renderLog(); updateReports();
+  localStorage.removeItem(SAVE_KEY);
   toast('↺ Reset complete');
 }
 
-// ── LOG ──
-const STATUS_COLORS={'Interested':'#2E7D32','Sale':'#33691E','Callback':'#E65100','Busy':'#F57F17','No Answer':'#616161','Voicemail':'#6A1B9A','Ans. Machine':'#006064','Wrong Number':'#4E342E','DNC':'#B71C1C','Other':'#0D47A1','New':'#90A4AE'};
-function statusColor(s){ return STATUS_COLORS[s]||'#555'; }
-
+// ════════════════════════════════
+//  LOG
+// ════════════════════════════════
+const SC={'Interested':'#2E7D32','Sale':'#33691E','Callback':'#E65100','Busy':'#F57F17','No Answer':'#616161','Voicemail':'#6A1B9A','Ans. Machine':'#006064','Wrong Number':'#4E342E','DNC':'#B71C1C','Other':'#0D47A1','New':'#90A4AE'};
+function statusColor(s){ return SC[s]||'#555'; }
 function addLog(msg,color='#555'){
   const t=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
   S.logs.unshift({msg,color,t});
@@ -602,41 +781,89 @@ function renderLog(){
       <div class="log-time">${e.t}</div>
     </div>`).join('');
 }
-function clearLog(){ S.logs=[]; renderLog(); toast('Log cleared'); }
+function clearLog(){ S.logs=[]; renderLog(); scheduleSave(); toast('Log cleared'); }
 
-// ── CONTACTS TAB ──
-function renderContacts(){
-  const q=(document.getElementById('searchInp').value||'').toLowerCase();
-  const lbl=document.getElementById('contactsCountLbl');
-  const w=document.getElementById('contactsWrap');
-  if(!S.contacts.length){ lbl.textContent='0 Contacts'; w.innerHTML='<div class="empty-state"><div class="empty-ico">👥</div>Import a list first</div>'; return; }
-  const filtered=S.contacts.filter(c=>(c.name||'').toLowerCase().includes(q)||(c.phone||'').includes(q));
-  lbl.textContent=`${filtered.length} Contact${filtered.length!==1?'s':''}`;
-  if(!filtered.length){ w.innerHTML='<div class="empty-state"><div class="empty-ico">🔍</div>No matches found</div>'; return; }
-  const sc=s=>s.replace(/[.\s]/g,'-');
-  w.innerHTML=filtered.map((c,i)=>`
-    <div class="contact-row" onclick="jumpToContact(${S.contacts.indexOf(c)})">
-      <div class="cr-av">${initials(c.name)}</div>
-      <div class="cr-info">
-        <div class="cr-name">${c.name||'Unknown'}</div>
-        <div class="cr-num">${c.phone}${c.company?' · '+c.company:''}</div>
-      </div>
-      <span class="cr-status s-${sc(c.status||'New')}">${c.status||'New'}</span>
-    </div>`).join('');
+// ════════════════════════════════
+//  LOAN CALCULATOR
+// ════════════════════════════════
+// Set today as default start date
+(function(){
+  const d=new Date(), pad=n=>String(n).padStart(2,'0');
+  document.getElementById('loanStart').value=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+})();
+
+function fmt(n){ return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtDate(d){ return d.toLocaleDateString('en-US',{month:'short',year:'numeric'}); }
+
+function calcLoan(){
+  const amt=parseFloat(document.getElementById('loanAmt').value);
+  const rate=parseFloat(document.getElementById('loanRate').value);
+  const term=parseInt(document.getElementById('loanTerm').value);
+  const startStr=document.getElementById('loanStart').value;
+
+  if(!amt||amt<=0){ toast('⚠️ Enter a valid loan amount'); return; }
+  if(!rate||rate<=0){ toast('⚠️ Enter a valid interest rate'); return; }
+  if(!term||term<1){ toast('⚠️ Enter a valid term'); return; }
+  if(!startStr){ toast('⚠️ Select a starting date'); return; }
+
+  const monthlyRate = rate / 100 / 12;
+  let monthly;
+  if(monthlyRate===0){
+    monthly = amt / term;
+  } else {
+    monthly = amt * (monthlyRate * Math.pow(1+monthlyRate,term)) / (Math.pow(1+monthlyRate,term)-1);
+  }
+  const totalPay = monthly * term;
+  const totalInterest = totalPay - amt;
+
+  // Payoff date
+  const start=new Date(startStr+'T12:00:00');
+  const payoff=new Date(start);
+  payoff.setMonth(payoff.getMonth()+term);
+
+  // Update summary
+  document.getElementById('lr-monthly').textContent=fmt(monthly);
+  document.getElementById('lr-sub').textContent=`for ${term} month${term>1?'s':''}`;
+  document.getElementById('lr-principal').textContent=fmt(amt);
+  document.getElementById('lr-payments').textContent=term;
+  document.getElementById('lr-interest').textContent=fmt(totalInterest);
+  document.getElementById('lr-total').textContent=fmt(totalPay);
+  document.getElementById('lr-payoff').textContent=fmtDate(payoff);
+
+  // Amortization table
+  let balance=amt;
+  let rows='';
+  for(let i=1;i<=term;i++){
+    const intPmt=balance*monthlyRate;
+    const prinPmt=monthly-intPmt;
+    balance=Math.max(0,balance-prinPmt);
+    const isLast=i===term;
+    const pd=new Date(start); pd.setMonth(pd.getMonth()+i);
+    rows+=`<div class="amort-row${isLast?' last-row':''}">
+      <span>${i}</span>
+      <span style="text-align:right">${fmt(monthly)}</span>
+      <span style="text-align:right">${fmt(intPmt)}</span>
+      <span style="text-align:right">${fmt(balance)}</span>
+    </div>`;
+  }
+  document.getElementById('amortBody').innerHTML=rows;
+  document.getElementById('loanResults').style.display='block';
+  document.getElementById('loanResults').scrollIntoView({behavior:'smooth'});
 }
 
-function jumpToContact(idx){
-  S.idx=idx; updateAll(); clearChips();
-  document.getElementById('notesTA').value=S.contacts[idx].note||'';
-  switchTab('dialer',document.querySelector('.nav-item'));
-  document.querySelector('.nav-item').classList.add('active');
-  toast(`Jumped to ${S.contacts[idx].name||S.contacts[idx].phone}`);
+function clearLoan(){
+  document.getElementById('loanAmt').value='';
+  document.getElementById('loanRate').value='';
+  document.getElementById('loanTerm').value='';
+  document.getElementById('loanResults').style.display='none';
+  toast('Cleared');
 }
 
-// ── REPORTS TAB ──
+// ════════════════════════════════
+//  REPORTS
+// ════════════════════════════════
 function updateReports(){
-  const total=S.contacts.length;
-  const called=S.history.length;
+  const total=S.contacts.length, called=S.history.length;
   const counts={};
   S.history.forEach(h=>{ counts[h.status]=(counts[h.status]||0)+1; });
   document.getElementById('st-total').textContent=total;
@@ -645,53 +872,81 @@ function updateReports(){
   document.getElementById('st-int').textContent=counts['Interested']||0;
   document.getElementById('st-cb').textContent=counts['Callback']||0;
   document.getElementById('st-dnc').textContent=counts['DNC']||0;
-
   const cw=document.getElementById('chartWrap');
   if(!called){ cw.innerHTML='<div class="empty-state"><div class="empty-ico">📊</div>No calls logged yet</div>'; return; }
   const max=Math.max(...Object.values(counts));
-  const barColors={'Interested':'#43A047','Sale':'#7CB342','Callback':'#FB8C00','Busy':'#F9A825','No Answer':'#757575','Voicemail':'#8E24AA','Ans. Machine':'#00838F','Wrong Number':'#6D4C41','DNC':'#E53935','Other':'#1976D2'};
+  const bc={'Interested':'#43A047','Sale':'#7CB342','Callback':'#FB8C00','Busy':'#F9A825','No Answer':'#757575','Voicemail':'#8E24AA','Ans. Machine':'#00838F','Wrong Number':'#6D4C41','DNC':'#E53935','Other':'#1976D2'};
   cw.innerHTML=Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([s,n])=>`
     <div class="bar-row">
       <div class="bar-lbl">${s}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${Math.round((n/max)*100)}%;background:${barColors[s]||'#90A4AE'}"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round((n/max)*100)}%;background:${bc[s]||'#90A4AE'}"></div></div>
       <div class="bar-val">${n}</div>
     </div>`).join('');
 }
 
-// ── EXPORT ──
+// ════════════════════════════════
+//  EXPORT
+// ════════════════════════════════
 function exportCSV(){
   if(!S.contacts.length&&!S.history.length){ toast('❌ No data to export'); return; }
   const rows=[['Name','Phone','Company','Status','Note','Called At']];
   if(S.history.length){
     S.history.forEach(h=>rows.push([h.contact.name||'',h.contact.phone||'',h.contact.company||'',h.status||'',h.note||'',h.ts||'']));
+    // also append uncalled contacts
+    const calledPhones=new Set(S.history.map(h=>h.contact.phone));
+    S.contacts.filter(c=>!calledPhones.has(c.phone)).forEach(c=>rows.push([c.name||'',c.phone||'',c.company||'','New (uncalled)',c.note||'','']));
   } else {
-    S.contacts.forEach(c=>rows.push([c.name||'',c.phone||'',c.company||'',c.status||'New',c.note||'','']));
+    S.contacts.forEach(c=>rows.push([c.name||'',c.phone||'',c.company||'','New',c.note||'','']));
   }
   const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
-  downloadFile('power_dialer_export.csv','data:text/csv;charset=utf-8,'+encodeURIComponent(csv));
+  dlFile('power_dialer_export_'+new Date().toISOString().slice(0,10)+'.csv','data:text/csv;charset=utf-8,'+encodeURIComponent(csv));
   toast('📄 CSV exported!');
 }
 
 function exportJSON(){
   if(!S.contacts.length){ toast('❌ No data to export'); return; }
-  const data={ exportedAt:new Date().toISOString(), totalContacts:S.contacts.length, callHistory:S.history, contacts:S.contacts.map(c=>({name:c.name,phone:c.phone,company:c.company,status:c.status,note:c.note})) };
-  downloadFile('power_dialer_data.json','data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data,null,2)));
+  const data={exportedAt:new Date().toISOString(),totalContacts:S.contacts.length,callHistory:S.history,contacts:S.contacts.map(c=>({name:c.name,phone:c.phone,company:c.company,status:c.status,note:c.note}))};
+  dlFile('power_dialer_data_'+new Date().toISOString().slice(0,10)+'.json','data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data,null,2)));
   toast('📦 JSON exported!');
 }
 
-function downloadFile(name,dataUrl){
-  const a=document.createElement('a'); a.href=dataUrl; a.download=name; document.body.appendChild(a); a.click(); document.body.removeChild(a);
-}
+function dlFile(name,url){ const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
 
-// ── SETTINGS ──
+// ════════════════════════════════
+//  SETTINGS
+// ════════════════════════════════
 function toggleSetting(key,btn){
   S.settings[key]=!S.settings[key];
   btn.classList.toggle('on',S.settings[key]);
-  toast(S.settings[key]?'Setting enabled':'Setting disabled');
+  toast(S.settings[key]?'✅ Setting enabled':'Setting disabled');
+  scheduleSave();
 }
 
-// ── INIT ──
-renderLog(); updateAll();
+// ════════════════════════════════
+//  INIT — restore from localStorage
+// ════════════════════════════════
+(function init(){
+  const restored=loadSaved();
+  if(restored && S.contacts.length){
+    // restore settings toggles
+    ['skip','req','note'].forEach(k=>{
+      const el=document.getElementById('tog-'+k);
+      if(el){ el.classList.toggle('on',S.settings[k]); }
+    });
+    // restore import zone
+    const iz=document.getElementById('importZone');
+    iz.classList.add('ok');
+    iz.querySelector('.iz-ico').textContent='✅';
+    iz.querySelector('.iz-t').textContent=`${S.contacts.length} contacts (restored)`;
+    iz.querySelector('.iz-s').textContent=`Progress: ${S.idx}/${S.contacts.length}`;
+    showDialerSections(true);
+    updateAll(); renderLog();
+    toast(`✅ Session restored · ${S.contacts.length} contacts`);
+    document.getElementById('saveDot').className='save-dot saved';
+  } else {
+    updateAll(); renderLog();
+  }
+})();
 </script>
 </body>
 </html>
