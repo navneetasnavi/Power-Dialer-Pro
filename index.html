@@ -239,9 +239,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
   <!-- Saved key shortcut -->
   <div class="lg-saved" id="lgSaved">
-    <div>You have a saved license key.</div>
-    <button onclick="useSavedKey()">Continue with saved key →</button>
-    <br><button onclick="clearSavedKey()" style="background:rgba(255,255,255,.08);margin-top:6px">Use a different key</button>
+    <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:2px">Welcome back, <span id="lgUserName">there</span> 👋</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:10px" id="lgSavedKey"></div>
+    <button onclick="useSavedKey()" style="display:block;width:100%;padding:12px;margin-bottom:8px;background:var(--green);border:none;border-radius:10px;color:#fff;font-size:15px;font-weight:700;cursor:pointer">Continue →</button>
+    <button onclick="clearSavedKey()" style="display:block;width:100%;padding:10px;background:rgba(255,255,255,.1);border:none;border-radius:10px;color:rgba(255,255,255,.8);font-size:13px;font-weight:600;cursor:pointer">Use a different key</button>
   </div>
 
   <div class="lg-card" id="lgCard">
@@ -265,7 +266,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       </div>
     </div>
     <div class="hdr-btns">
-      <button class="hdr-btn" onclick="document.getElementById('fi1').click()">+ Import</button>
+      <button class="hdr-btn" onclick="logoutLicense()" style="background:rgba(255,255,255,.15)">🚪 Logout</button>
       <input type="file" id="fi1" accept=".csv,.xlsx,.xls" style="display:none">
     </div>
   </div>
@@ -504,7 +505,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 // ══════════════════════════════════════════
 //  !! REPLACE THIS URL WITH YOUR APPS SCRIPT URL !!
 // ══════════════════════════════════════════
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4CxBUQ7YWiPaFM5lG_D6WWDxr3AXmlE5zrO7-TRuYP4oi19s5zKzJH6gIHqbfkVQ/exec';
+const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
 
 // ══════════════════════════════════════════
 //  LICENSE SYSTEM
@@ -513,9 +514,10 @@ const LIC_KEY = 'pdpro_license';
 const SAVE_KEY = 'pdpro_v4';
 
 function getSavedLicense(){ return localStorage.getItem(LIC_KEY)||''; }
-function saveLicense(k){ localStorage.setItem(LIC_KEY,k); }
-function clearSavedKey(){ localStorage.removeItem(LIC_KEY); document.getElementById('lgSaved').style.display='none'; document.getElementById('lgCard').style.display='block'; }
-function logoutLicense(){ if(!confirm('Sign out? You will need your license key to log back in.')) return; clearSavedKey(); location.reload(); }
+function saveLicense(k,u){ localStorage.setItem(LIC_KEY,k); localStorage.setItem(LIC_KEY+'_user',u||''); }
+function getSavedUser(){ return localStorage.getItem(LIC_KEY+'_user')||''; }
+function clearSavedKey(){ localStorage.removeItem(LIC_KEY); localStorage.removeItem(LIC_KEY+'_user'); document.getElementById('lgSaved').style.display='none'; document.getElementById('lgCard').style.display='block'; }
+function logoutLicense(){ if(!confirm('Sign out? Your call data and progress will be saved. You can resume after logging back in.')) return; clearSavedKey(); location.reload(); }
 
 function useSavedKey(){
   const k=getSavedLicense();
@@ -541,7 +543,7 @@ async function validateKey(key,isSaved){
     const data=await res.json();
 
     if(data.valid){
-      saveLicense(key);
+      saveLicense(key, data.user||'');
       document.getElementById('activeLicenseLbl').textContent=key;
       document.getElementById('licenseGate').style.display='none';
       initApp();
@@ -577,9 +579,14 @@ document.getElementById('lgInp').addEventListener('keydown',function(e){ if(e.ke
 (function(){
   const saved=getSavedLicense();
   if(saved){
+    const user=getSavedUser();
+    document.getElementById('lgUserName').textContent=user||'there';
+    // Show masked key like APEX-****-****
+    const parts=saved.split('-');
+    const masked=parts.length>=1?parts[0]+'-****-****':saved.slice(0,4)+'****';
+    document.getElementById('lgSavedKey').textContent='Key: '+masked;
     document.getElementById('lgSaved').style.display='block';
     document.getElementById('lgCard').style.display='none';
-    // Auto-attempt saved key
     validateKey(saved,true);
   }
 })();
