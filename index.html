@@ -266,6 +266,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       </div>
     </div>
     <div class="hdr-btns">
+      <span id="hdrUserName" style="color:rgba(255,255,255,.85);font-size:12px;font-weight:600;margin-right:4px"></span>
       <button class="hdr-btn" onclick="logoutLicense()" style="background:rgba(255,255,255,.15)">🚪 Logout</button>
       <input type="file" id="fi1" accept=".csv,.xlsx,.xls" style="display:none">
     </div>
@@ -517,7 +518,7 @@ function getSavedLicense(){ return localStorage.getItem(LIC_KEY)||''; }
 function saveLicense(k,u){ localStorage.setItem(LIC_KEY,k); localStorage.setItem(LIC_KEY+'_user',u||''); }
 function getSavedUser(){ return localStorage.getItem(LIC_KEY+'_user')||''; }
 function clearSavedKey(){ localStorage.removeItem(LIC_KEY); localStorage.removeItem(LIC_KEY+'_user'); document.getElementById('lgSaved').style.display='none'; document.getElementById('lgCard').style.display='block'; }
-function logoutLicense(){ if(!confirm('Sign out? Your call data and progress will be saved. You can resume after logging back in.')) return; clearSavedKey(); location.reload(); }
+function logoutLicense(){ if(!confirm('Sign out? Your call data and progress will be saved. You can resume after logging back in.')) return; sendLog('🚪 Logout'); clearSavedKey(); location.reload(); }
 
 function useSavedKey(){
   const k=getSavedLicense();
@@ -597,6 +598,7 @@ document.getElementById('lgInp').addEventListener('keydown',function(e){ if(e.ke
 const S={contacts:[],idx:0,paused:false,logs:[],disp:null,history:[],settings:{skip:true,req:true,note:true}};
 
 function initApp(){
+  const u=getSavedUser(); if(u) document.getElementById('hdrUserName').textContent='👤 '+u;
   const restored=loadSaved();
   if(restored&&S.contacts.length){
     ['skip','req','note'].forEach(k=>{ const el=document.getElementById('tog-'+k); if(el) el.classList.toggle('on',S.settings[k]); });
@@ -711,6 +713,7 @@ function doDial(){
   btn.classList.add('ringing'); btn.textContent='📲'; btn.disabled=true;
   document.getElementById('pulseEl').classList.add('on');
   addLog(`Dialing ${c.phone}${c.name?' · '+c.name:''}`, '#1565C0');
+  sendLog('📞 Dialed', c.phone, c.name);
   window.location.href=`tel:${clean}`;
   setTimeout(()=>{ btn.classList.remove('ringing'); btn.textContent='📞'; document.getElementById('pulseEl').classList.remove('on'); updateAll(); },2500);
 }
@@ -722,6 +725,7 @@ function doApply(){
   const status=S.disp||'Other';
   c.status=status; c.note=note;
   addLog(`${c.name||c.phone} → ${status}${note?' · "'+note+'"':''}`, statusColor(status));
+  sendLog('✅ Disposition', c.phone, c.name, status, note);
   S.history.push({contact:{name:c.name,phone:c.phone,company:c.company},status,note,ts:new Date().toISOString()});
   showToast(`✅ ${status} saved`); clearChips();
   if(S.settings.note) document.getElementById('notesTA').value='';
@@ -736,7 +740,7 @@ function nextC(){
   scheduleSave();
 }
 
-function doSkip(){ const c=getC(); if(!c) return; addLog(`Skipped ${c.phone}`,'#9E9E9E'); showToast('Skipped'); nextC(); }
+function doSkip(){ const c=getC(); if(!c) return; addLog(`Skipped ${c.phone}`,'#9E9E9E'); sendLog('⏭ Skipped', c.phone, c.name); showToast('Skipped'); nextC(); }
 
 function doTogglePause(){
   S.paused=!S.paused;
@@ -765,6 +769,25 @@ function doReset(){
 // ══════════════════════════════════════════
 const SC={'Interested':'#2E7D32','Sale':'#33691E','Callback':'#E65100','Busy':'#F57F17','No Answer':'#616161','Voicemail':'#6A1B9A','Ans. Machine':'#006064','Wrong Number':'#4E342E','DNC':'#B71C1C','Other':'#0D47A1'};
 function statusColor(s){ return SC[s]||'#555'; }
+
+// ══ REMOTE LOGGING ══
+function sendLog(type, phone='', contact='', status='', note=''){
+  try{
+    const user=getSavedUser()||'Unknown';
+    const key=getSavedLicense()||'';
+    if(!user||!key) return; // not logged in
+    const url=APPS_SCRIPT_URL
+      +'?action=log'
+      +'&key='+encodeURIComponent(key)
+      +'&user='+encodeURIComponent(user)
+      +'&type='+encodeURIComponent(type)
+      +'&phone='+encodeURIComponent(phone)
+      +'&contact='+encodeURIComponent(contact)
+      +'&status='+encodeURIComponent(status)
+      +'&note='+encodeURIComponent(note);
+    fetch(url).catch(()=>{}); // fire and forget, silent fail
+  }catch(e){}
+}
 function addLog(msg,color='#555'){ const t=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); S.logs.unshift({msg,color,t}); renderLog(); }
 function renderLog(){ const w=document.getElementById('logWrap'); if(!S.logs.length){ w.innerHTML='<div class="empty-state"><div class="empty-ico">📋</div>No calls yet</div>'; return; } w.innerHTML=S.logs.slice(0,80).map(e=>`<div class="log-row"><div class="log-dot" style="background:${e.color}"></div><div class="log-info"><div class="log-msg">${e.msg}</div></div><div class="log-time">${e.t}</div></div>`).join(''); }
 function clearLog(){ S.logs=[]; renderLog(); scheduleSave(); showToast('Log cleared'); }
