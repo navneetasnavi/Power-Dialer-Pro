@@ -2,10 +2,10 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Power Dialer Pro</title><style>*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}:root{--green:#00C853;--gd:#007B33;--gh:#00813A;--bg:#F0F2F5;--card:#fff;--text:#1C1C1E;--sub:#6B7280;--border:#E5E7EB;--red:#EF5350}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);display:flex;justify-content:center;min-height:100vh}.app{width:100%;max-width:430px;min-height:100vh;background:var(--bg);display:flex;flex-direction:column;position:relative}#licenseGate{position:fixed;inset:0;background:linear-gradient(160deg,#00813A 0%,#004d22 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;padding:32px 24px}.lg-logo{font-size:56px;margin-bottom:16px}.lg-title{color:#fff;font-size:26px;font-weight:800;letter-spacing:-.5px;text-align:center}.lg-sub{color:rgba(255,255,255,.7);font-size:14px;margin-top:6px;text-align:center;line-height:1.5}.lg-card{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:340px;margin-top:28px;box-shadow:0 8px 32px rgba(0,0,0,.25)}.lg-card label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--sub);display:block;margin-bottom:8px}.lg-inp{width:100%;border:2px solid var(--border);border-radius:12px;padding:14px;font-size:16px;outline:none;font-family:inherit;color:var(--text);letter-spacing:1px;text-align:center;transition:border-color .2s;text-transform:uppercase}.lg-inp:focus{border-color:var(--green)}.lg-inp::placeholder{letter-spacing:0;text-transform:none;color:#B0BEC5}.lg-btn{width:100%;margin-top:14px;padding:15px;background:var(--green);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:transform .12s,opacity .15s;-webkit-appearance:none}.lg-btn:active{transform:scale(.97)}.lg-btn:disabled{opacity:.6;cursor:default}.lg-err{color:var(--red);font-size:13px;text-align:center;margin-top:10px;min-height:18px;font-weight:500}.lg-spinner{display:none;width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto}@keyframes spin{to{transform:rotate(360deg)}}.lg-footer{color:rgba(255,255,255,.45);font-size:11px;margin-top:20px;text-align:center}.lg-saved{color:rgba(255,255,255,.7);font-size:13px;margin-top:14px;text-align:center;display:none}.lg-saved button{background:rgba(255,255,255,.15);border:none;border-radius:8px;color:#fff;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;margin-top:6px}.hdr{background:var(--gh);padding:14px 16px 12px;padding-top:calc(14px+env(safe-area-inset-top,0px));flex-shrink:0}.hdr-row{display:flex;align-items:center;justify-content:space-between}.hdr-left{display:flex;align-items:center;gap:10px}.hdr-ico{width:36px;height:36px;background:rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}.hdr-title{color:#fff;font-size:18px;font-weight:700;letter-spacing:-.3px}.hdr-sub{color:rgba(255,255,255,.72);font-size:11px;margin-top:1px}.hdr-btns{display:flex;gap:6px}.hdr-btn{background:rgba(255,255,255,.18);border:none;border-radius:8px;padding:7px 11px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}.hdr-btn:active{background:rgba(255,255,255,.3)}.prow{margin-top:10px;display:flex;align-items:center;gap:8px}.pbar{flex:1;height:5px;background:rgba(255,255,255,.25);border-radius:3px;overflow:hidden}.pbar-f{height:100%;background:#fff;border-radius:3px;width:0%;transition:width .4s}.pbar-t{color:rgba(255,255,255,.9);font-size:11px;font-weight:600;min-width:36px;text-align:right}.save-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#aaffaa;margin-left:6px;vertical-align:middle;transition:background .3s}.save-dot.saving{background:#FFD54F;animation:blink .5s infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}.page{display:none;flex:1;overflow-y:auto;padding:0 0 82px;-webkit-overflow-scrolling:touch}.page.active{display:block}.page::-webkit-scrollbar{display:none}.card{background:#fff;border-radius:16px;margin:12px 14px;box-shadow:0 1px 6px rgba(0,0,0,.07);overflow:hidden}.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 14px 10px;border-bottom:1px solid var(--border)}.card-hdr span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub)}.card-hdr button{font-size:12px;color:var(--gd);font-weight:600;border:none;background:none;cursor:pointer}.import-zone{margin:12px 14px;background:#fff;border-radius:16px;border:2px dashed #B0BEC5;padding:22px;text-align:center;position:relative;cursor:pointer;transition:all .2s}.import-zone.ok{border-color:var(--green);background:#F0FFF4}.import-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}.iz-ico{font-size:32px;margin-bottom:6px}.iz-t{font-size:14px;font-weight:600;color:#37474F}.iz-s{font-size:12px;color:#90A4AE;margin-top:3px}.import-zone.ok .iz-t{color:var(--gd)}.cc-top{background:var(--gh);padding:18px 16px 16px;position:relative}.cc-badge{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.2);border-radius:20px;padding:3px 10px;color:#fff;font-size:11px;font-weight:600}.cc-av{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.25);border:2.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px}.cc-name{color:#fff;font-size:20px;font-weight:700}.cc-num{color:rgba(255,255,255,.85);font-size:15px;margin-top:3px;letter-spacing:.4px}.cc-co{color:rgba(255,255,255,.62);font-size:13px;margin-top:2px}.cc-acts{display:flex;border-bottom:1px solid var(--border)}.cc-act{flex:1;padding:13px 6px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;border:none;background:none;font-size:11px;color:var(--sub);font-weight:500;transition:background .15s}.cc-act:active{background:#F5F5F5}.cc-act .ai{font-size:20px}.dial-sec{margin:0 14px 10px;background:#fff;border-radius:16px;padding:18px 16px;box-shadow:0 1px 6px rgba(0,0,0,.07);text-align:center}.dl-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--sub);margin-bottom:14px}.dl-wrap{display:flex;justify-content:center;margin-bottom:6px;position:relative}.pulse{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;border:3px solid var(--green);opacity:0}.pulse.on{animation:pulse 1.4s ease-out infinite}@keyframes pulse{0%{transform:translate(-50%,-50%) scale(1);opacity:.7}100%{transform:translate(-50%,-50%) scale(1.9);opacity:0}}.dl-btn{width:72px;height:72px;border-radius:50%;background:var(--green);border:none;color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,200,83,.35);transition:transform .12s;position:relative;z-index:1}.dl-btn:active{transform:scale(.91)}.dl-btn:disabled{background:#B0BEC5;box-shadow:none;cursor:default}.dl-btn.ringing{background:#FF5722;animation:shake .3s ease infinite}@keyframes shake{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}.dl-hint{font-size:12px;color:var(--sub);margin-top:10px}.chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:12px 14px}.chip{padding:10px 8px;border-radius:10px;border:1.5px solid transparent;font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all .14s;background:#F5F5F5;color:#424242;-webkit-appearance:none}.chip:active{transform:scale(.95)}.chip.sel{border-color:currentColor!important}.chip.cg{color:#2E7D32;background:#E8F5E9}.chip.cg.sel{background:#C8E6C9}.chip.cl{color:#33691E;background:#F9FBE7}.chip.cl.sel{background:#DCEDC8}.chip.co{color:#E65100;background:#FFF3E0}.chip.co.sel{background:#FFE0B2}.chip.ca{color:#F57F17;background:#FFFDE7}.chip.ca.sel{background:#FFF9C4}.chip.cgr{color:#424242;background:#F5F5F5}.chip.cgr.sel{background:#E0E0E0}.chip.cp{color:#6A1B9A;background:#F3E5F5}.chip.cp.sel{background:#E1BEE7}.chip.cc{color:#006064;background:#E0F7FA}.chip.cc.sel{background:#B2EBF2}.chip.cbr{color:#4E342E;background:#EFEBE9}.chip.cbr.sel{background:#D7CCC8}.chip.cr{color:#B71C1C;background:#FFEBEE}.chip.cr.sel{background:#FFCDD2}.chip.cb{color:#0D47A1;background:#E3F2FD}.chip.cb.sel{background:#BBDEFB}.notes-wrap{padding:0 14px 10px}.notes-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin-bottom:7px}.notes-ta{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-size:14px;resize:none;outline:none;font-family:inherit;color:var(--text);background:#FAFAFA;height:72px;transition:border-color .2s}.notes-ta:focus{border-color:var(--green);background:#fff}.act-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:0 14px 10px}.act-btn{padding:15px;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;transition:transform .12s;-webkit-appearance:none}.act-btn:active{transform:scale(.95)}.act-apply{background:var(--green);color:#fff;box-shadow:0 3px 12px rgba(0,200,83,.28)}.act-skip{background:#ECEFF1;color:#546E7A}.ctrl-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 14px 12px}.ctrl-btn{padding:12px 6px;border:none;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;text-align:center;line-height:1.4;transition:transform .12s;-webkit-appearance:none}.ctrl-btn:active{transform:scale(.94)}.c-redial{background:#E8F5E9;color:#2E7D32}.c-pause{background:#E3F2FD;color:#0D47A1}.c-pause.on{background:#FFF8E1;color:#F57F17}.c-reset{background:#FFEBEE;color:#C62828}.log-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:.5px solid #F3F4F6}.log-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}.log-info{flex:1}.log-msg{font-size:13px;color:#374151;font-weight:500}.log-time{font-size:10px;color:#9CA3AF;white-space:nowrap}.empty-state{padding:36px 20px;text-align:center;color:#B0BEC5;font-size:14px;line-height:1.8}.empty-ico{font-size:38px;margin-bottom:10px}.loan-hero{background:var(--gh);padding:20px 16px 24px;text-align:center}.loan-hero h2{color:#fff;font-size:18px;font-weight:700;margin-bottom:4px}.loan-hero p{color:rgba(255,255,255,.72);font-size:13px}.loan-form{margin:14px 14px 0}.lf-group{margin-bottom:12px}.lf-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin-bottom:6px;display:block}.lf-inp-wrap{position:relative}.lf-prefix{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;color:#546E7A;font-weight:600;pointer-events:none}.lf-inp{width:100%;padding:13px 14px 13px 28px;border:1.5px solid var(--border);border-radius:12px;font-size:16px;outline:none;font-family:inherit;color:var(--text);background:#fff;transition:border-color .2s;-webkit-appearance:none}.lf-inp.np{padding-left:14px}.lf-inp:focus{border-color:var(--green)}.lf-suffix{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#9E9E9E;pointer-events:none}.lf-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.calc-btn{width:100%;padding:15px;background:var(--green);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:10px;transition:transform .12s;-webkit-appearance:none;box-shadow:0 3px 14px rgba(0,200,83,.3)}.calc-btn:active{transform:scale(.97)}.clear-btn{width:100%;padding:13px;background:#ECEFF1;color:#546E7A;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:14px;-webkit-appearance:none}.results-card{margin:0 14px 14px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08)}.rc-top{background:linear-gradient(135deg,#00813A,#00a550);padding:16px;text-align:center}.rc-top-lbl{color:rgba(255,255,255,.75);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px}.rc-top-val{color:#fff;font-size:32px;font-weight:700;margin-top:4px}.rc-top-sub{color:rgba(255,255,255,.7);font-size:12px;margin-top:3px}.rc-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:.5px solid #F3F4F6}.rc-row:last-child{border-bottom:none}.rc-lbl{font-size:14px;color:var(--sub)}.rc-val{font-size:15px;font-weight:700;color:var(--text)}.rc-val.green{color:#2E7D32}.rc-val.red{color:#C62828}.rc-val.blue{color:#0D47A1}.rc-val.orange{color:#E65100}.amort-card{margin:0 14px 14px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07)}.amort-hdr{display:grid;grid-template-columns:36px 1fr 1fr 1fr;gap:4px;padding:10px 12px;background:#F0F2F5;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--sub)}.amort-row{display:grid;grid-template-columns:36px 1fr 1fr 1fr;gap:4px;padding:10px 12px;border-bottom:.5px solid #F3F4F6;font-size:12px;color:var(--text)}.amort-row:last-child{border-bottom:none;background:#F0FFF4;font-weight:700}.amort-row span:not(:first-child){text-align:right}.amort-hdr span:not(:first-child){text-align:right}.stats-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px 14px}.stat-card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 6px rgba(0,0,0,.07)}.stat-val{font-size:28px;font-weight:700;color:var(--text)}.stat-lbl{font-size:12px;color:var(--sub);margin-top:3px}.stat-ico{font-size:22px;margin-bottom:6px}.chart-bar-wrap{padding:12px 14px 10px}.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}.bar-lbl{font-size:12px;color:var(--sub);width:82px;text-align:right;flex-shrink:0}.bar-track{flex:1;height:10px;background:#F0F2F5;border-radius:5px;overflow:hidden}.bar-fill{height:100%;border-radius:5px;transition:width .6s}.bar-val{font-size:12px;font-weight:600;color:var(--text);width:24px;text-align:right;flex-shrink:0}.export-row{padding:0 14px 12px;display:grid;grid-template-columns:1fr;gap:10px}.exp-btn{padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;-webkit-appearance:none;transition:transform .12s}.exp-btn:active{transform:scale(.95)}.exp-csv{background:#E8F5E9;color:#2E7D32}.exp-json{background:#E3F2FD;color:#0D47A1}.setting-group{margin:12px 14px}.sg-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--sub);margin-bottom:8px;padding:0 4px}.sg-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07)}.setting-row{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:.5px solid var(--border);cursor:pointer}.setting-row:last-child{border-bottom:none}.sr-left{display:flex;align-items:center;gap:10px}.sr-ico{font-size:20px}.sr-label{font-size:14px;font-weight:500;color:var(--text)}.sr-sub{font-size:12px;color:var(--sub);margin-top:1px}.sr-right{font-size:13px;color:var(--sub)}.toggle{width:48px;height:28px;background:#E5E7EB;border-radius:14px;position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0}.toggle.on{background:var(--green)}.toggle::after{content:'';position:absolute;width:22px;height:22px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}.toggle.on::after{transform:translateX(20px)}.bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--border);display:flex;padding-bottom:env(safe-area-inset-bottom,0);z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.06)}.nav-item{flex:1;padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;cursor:pointer;font-size:10px;font-weight:600;color:#B0BEC5;transition:color .15s}.nav-item.active{color:var(--gd)}.nav-ico{font-size:22px}.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:8000;display:flex;align-items:flex-end;justify-content:center}.modal-box{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:430px;padding:24px 20px 32px;max-height:85vh;overflow-y:auto}.modal-box h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}.modal-box p{font-size:13px;color:var(--sub);margin-bottom:18px;line-height:1.5}.modal-group{margin-bottom:14px}.modal-group label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);display:block;margin-bottom:6px}.modal-select{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;outline:none;font-family:inherit;color:var(--text);background:#fff;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%236B7280' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}.modal-select:focus{border-color:var(--green)}.modal-preview{background:#F8F9FA;border-radius:10px;padding:10px 12px;font-size:12px;color:var(--sub);margin-bottom:16px;line-height:1.7}.modal-preview strong{color:var(--text)}.modal-btn{width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;-webkit-appearance:none}.modal-btn-sec{width:100%;padding:12px;background:#ECEFF1;color:#546E7A;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;-webkit-appearance:none}.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px)+78px);left:50%;transform:translateX(-50%) translateY(16px);background:rgba(15,25,15,.9);color:#fff;padding:10px 20px;border-radius:22px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;pointer-events:none;z-index:9998;white-space:nowrap;max-width:88%;text-align:center}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}</style></head><body><div class="app"><!-- ══ LICENSE GATE ══ --><div id="licenseGate"><div class="lg-logo">📞</div><div class="lg-title">Power Dialer Pro</div><div class="lg-sub">Enter your license key to access the app</div><!-- Saved key shortcut --><div class="lg-saved" id="lgSaved"><div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:2px">Welcome back, <span id="lgUserName">there</span> 👋</div><div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:10px" id="lgSavedKey"></div><button onclick="useSavedKey()" style="display:block;width:100%;padding:12px;margin-bottom:8px;background:var(--green);border:none;border-radius:10px;color:#fff;font-size:15px;font-weight:700;cursor:pointer">Continue →</button><button onclick="clearSavedKey()" style="display:block;width:100%;padding:10px;background:rgba(255,255,255,.1);border:none;border-radius:10px;color:rgba(255,255,255,.8);font-size:13px;font-weight:600;cursor:pointer">Use a different key</button></div><div class="lg-card" id="lgCard"><label for="lgInp">License Key</label><input class="lg-inp" id="lgInp" type="text" placeholder="XXXX-XXXX-XXXX" maxlength="20" autocomplete="off" autocorrect="off" spellcheck="false"><button class="lg-btn" id="lgBtn" onclick="checkLicense()">Activate →</button><div class="lg-err" id="lgErr"></div><div class="lg-spinner" id="lgSpinner"></div></div><div class="lg-footer">© Power Dialer Pro · Authorized users only</div></div><!-- ══ HEADER ══ --><div class="hdr"><div class="hdr-row"><div class="hdr-left"><div class="hdr-ico">📞</div><div><div class="hdr-title">Power Dialer Pro <span class="save-dot" id="saveDot"></span></div><div class="hdr-sub" id="hdrSub">Import a list to begin</div></div></div><div class="hdr-btns"><span id="hdrUserName" style="color:rgba(255,255,255,.85);font-size:12px;font-weight:600;margin-right:4px"></span><button class="hdr-btn" onclick="logoutLicense()" style="background:rgba(255,255,255,.15)">🚪 Logout</button><input type="file" id="fi1" accept=".csv,.xlsx,.xls" style="display:none"></div></div><div class="prow"><div class="pbar"><div class="pbar-f" id="pbarF"></div></div><span class="pbar-t" id="pbarT">0/0</span></div></div><!-- ══ PAGE: DIALER ══ --><div class="page active" id="pg-dialer"><div class="import-zone" id="importZone"><div class="iz-ico">📂</div><div class="iz-t">Import your call list</div><div class="iz-s">Tap to browse · CSV or Excel</div><input type="file" id="fi2" accept=".csv,.xlsx,.xls"></div><div class="card" id="ccCard" style="display:none"><div class="cc-top"><div class="cc-badge" id="ccBadge">1/0</div><div class="cc-av" id="ccAv">?</div><div class="cc-name" id="ccName">—</div><div class="cc-num" id="ccNum">—</div><div class="cc-co" id="ccCo"></div></div><div class="cc-acts"><button class="cc-act" onclick="doDial()"><span class="ai">📞</span>Call</button><button class="cc-act" onclick="doSkip()"><span class="ai">⏭</span>Skip</button><button class="cc-act" onclick="doDial()"><span class="ai">🔄</span>Redial</button><button class="cc-act" onclick="doTogglePause()"><span class="ai" id="pauseAi">⏸</span><span id="pauseTxt">Pause</span></button></div></div><div class="dial-sec" id="dialSec" style="display:none"><div class="dl-lbl">Auto Dialer</div><div class="dl-wrap"><div class="pulse" id="pulseEl"></div><button class="dl-btn" id="dlBtn" disabled onclick="doDial()">📞</button></div><div class="dl-hint" id="dlHint">Load contacts to begin</div></div><div class="card" id="chipCard" style="display:none"><div class="card-hdr"><span>Call Status</span><button onclick="clearChips()">Clear</button></div><div class="chips" id="chipsWrap"><button class="chip cg" data-v="Interested">😊 Interested</button><button class="chip cl" data-v="Sale">💰 Sale</button><button class="chip co" data-v="Callback">📅 Callback</button><button class="chip ca" data-v="Busy">⏰ Busy</button><button class="chip cgr" data-v="No Answer">📵 No Answer</button><button class="chip cp" data-v="Voicemail">📨 Voicemail</button><button class="chip cc" data-v="Ans. Machine">📠 Ans. Machine</button><button class="chip cbr" data-v="Wrong Number">❌ Wrong No.</button><button class="chip cr" data-v="DNC">🚫 DNC</button><button class="chip cb" data-v="Other">📝 Other</button></div></div><div id="notesSec" style="display:none"><div class="notes-wrap"><div class="notes-lbl">Notes</div><textarea class="notes-ta" id="notesTA" placeholder="Add a note about this call…"></textarea></div></div><div class="act-row" id="actRow" style="display:none"><button class="act-btn act-apply" onclick="doApply()">✅ Apply & Next</button><button class="act-btn act-skip" onclick="doSkip()">⏭ Skip</button></div><div class="ctrl-row" id="ctrlRow" style="display:none"><button class="ctrl-btn c-redial" onclick="doDial()">🔄 Redial</button><button class="ctrl-btn c-pause" id="pauseBtn2" onclick="doTogglePause()">⏸ Pause</button><button class="ctrl-btn c-reset" onclick="doReset()">↺ Reset</button></div><div class="card"><div class="card-hdr"><span>Call Log</span><button onclick="clearLog()">Clear</button></div><div id="logWrap"><div class="empty-state"><div class="empty-ico">📋</div>No calls yet</div></div></div></div><!-- ══ PAGE: LOAN CALCULATOR ══ --><div class="page" id="pg-loan"><div class="loan-hero"><h2>💵 Payday Loan Calculator</h2><p>Calculate your payday loan estimate below</p></div><div class="loan-form"><div class="lf-group"><label class="lf-label">Loan Amount</label><div class="lf-inp-wrap"><span class="lf-prefix">$</span><input class="lf-inp" type="number" id="loanAmt" placeholder="500" min="0" inputmode="decimal"></div></div><div class="lf-row2"><div class="lf-group" style="margin-bottom:0"><label class="lf-label">Interest Rate (%)</label><div class="lf-inp-wrap"><input class="lf-inp np" type="number" id="loanRate" placeholder="15" min="0" inputmode="decimal"><span class="lf-suffix">%</span></div></div><div class="lf-group" style="margin-bottom:0"><label class="lf-label">Term (Months)</label><div class="lf-inp-wrap"><input class="lf-inp np" type="number" id="loanTerm" placeholder="12" min="1" inputmode="decimal"><span class="lf-suffix">mo</span></div></div></div><div class="lf-group" style="margin-top:12px"><label class="lf-label">Starting Day</label><div class="lf-inp-wrap"><input class="lf-inp np" type="date" id="loanStart"></div></div><button class="calc-btn" onclick="calcLoan()">📊 Calculate</button><button class="clear-btn" onclick="clearLoan()">✕ Clear</button></div><div id="loanResults" style="display:none"><div class="results-card"><div class="rc-top"><div class="rc-top-lbl">Monthly Payment</div><div class="rc-top-val" id="lr-monthly">$0.00</div><div class="rc-top-sub" id="lr-sub">per month</div></div><div><div class="rc-row"><span class="rc-lbl">Loan Amount</span><span class="rc-val blue" id="lr-principal">$0</span></div><div class="rc-row"><span class="rc-lbl">Number of Payments</span><span class="rc-val" id="lr-payments">0</span></div><div class="rc-row"><span class="rc-lbl">Interest (To be paid)</span><span class="rc-val red" id="lr-interest">$0</span></div><div class="rc-row"><span class="rc-lbl">Total Amount Payable</span><span class="rc-val orange" id="lr-total">$0</span></div><div class="rc-row"><span class="rc-lbl">Payoff Date</span><span class="rc-val green" id="lr-payoff">—</span></div></div></div><div class="amort-card"><div class="card-hdr"><span>Payment Schedule</span></div><div class="amort-hdr"><span>#</span><span>Payment</span><span>Interest</span><span>Balance</span></div><div id="amortBody"></div></div></div></div><!-- ══ PAGE: REPORTS ══ --><div class="page" id="pg-reports"><div class="stats-grid"><div class="stat-card"><div class="stat-ico">📋</div><div class="stat-val" id="st-total">0</div><div class="stat-lbl">Total Contacts</div></div><div class="stat-card"><div class="stat-ico">✅</div><div class="stat-val" id="st-called">0</div><div class="stat-lbl">Called</div></div><div class="stat-card"><div class="stat-ico">💰</div><div class="stat-val" id="st-sale">0</div><div class="stat-lbl">Sales</div></div><div class="stat-card"><div class="stat-ico">😊</div><div class="stat-val" id="st-int">0</div><div class="stat-lbl">Interested</div></div><div class="stat-card"><div class="stat-ico">📅</div><div class="stat-val" id="st-cb">0</div><div class="stat-lbl">Callbacks</div></div><div class="stat-card"><div class="stat-ico">🚫</div><div class="stat-val" id="st-dnc">0</div><div class="stat-lbl">DNC</div></div></div><div class="card"><div class="card-hdr"><span>Disposition Breakdown</span></div><div class="chart-bar-wrap" id="chartWrap"><div class="empty-state"><div class="empty-ico">📊</div>No calls logged yet</div></div></div><div class="card" style="margin-top:0"><div class="card-hdr"><span>Export</span></div><div class="export-row"><button class="exp-btn exp-csv" onclick="exportCSV()">📄 Export CSV</button></div></div></div><!-- ══ PAGE: SETTINGS ══ --><div class="page" id="pg-settings"><div class="setting-group"><div class="sg-title">Dialer</div><div class="sg-card"><div class="setting-row"><div class="sr-left"><span class="sr-ico">⏭</span><div><div class="sr-label">Auto Skip Invalid</div><div class="sr-sub">Skip numbers shorter than 5 digits</div></div></div><button class="toggle on" id="tog-skip" onclick="toggleSetting('skip',this)"></button></div><div class="setting-row"><div class="sr-left"><span class="sr-ico">🔔</span><div><div class="sr-label">Require Disposition</div><div class="sr-sub">Must select status before next call</div></div></div><button class="toggle on" id="tog-req" onclick="toggleSetting('req',this)"></button></div><div class="setting-row"><div class="sr-left"><span class="sr-ico">📝</span><div><div class="sr-label">Auto-clear Notes</div><div class="sr-sub">Clear notes after each call</div></div></div><button class="toggle on" id="tog-note" onclick="toggleSetting('note',this)"></button></div></div></div><div class="setting-group"><div class="sg-title">License</div><div class="sg-card"><div class="setting-row"><div class="sr-left"><span class="sr-ico">🔑</span><div><div class="sr-label">Active License</div><div class="sr-sub" id="activeLicenseLbl">—</div></div></div><span class="sr-right" style="color:var(--green);font-weight:700">✓ Active</span></div><div class="setting-row" onclick="logoutLicense()"><div class="sr-left"><span class="sr-ico">🚪</span><div><div class="sr-label" style="color:#C62828">Sign Out / Change Key</div><div class="sr-sub">Returns to license screen</div></div></div><div class="sr-right">›</div></div></div></div><div class="setting-group"><div class="sg-title">Data</div><div class="sg-card"><div class="setting-row" onclick="exportCSV()"><div class="sr-left"><span class="sr-ico">📤</span><div><div class="sr-label">Export Call Log (CSV)</div><div class="sr-sub">Download all dispositions & notes</div></div></div><div class="sr-right">›</div></div><div class="setting-row" onclick="doReset()"><div class="sr-left"><span class="sr-ico">↺</span><div><div class="sr-label" style="color:#C62828">Reset Everything</div><div class="sr-sub">Clear all call data</div></div></div><div class="sr-right">›</div></div></div></div><div class="setting-group"><div class="sg-title">About</div><div class="sg-card"><div class="setting-row"><div class="sr-left"><span class="sr-ico">📞</span><div><div class="sr-label">Power Dialer Pro</div><div class="sr-sub">v4.0 · Licensed · Auto-save · iPhone XR</div></div></div></div></div></div></div><!-- COLUMN MAPPER MODAL --><div class="modal-overlay" id="mapModal" style="display:none"><div class="modal-box"><h3>📋 Map Your Columns</h3><p>We couldn't auto-detect all columns. Please select which columns contain each field.</p><div class="modal-group"><label>First Name Column</label><select class="modal-select" id="mapFirst"></select></div><div class="modal-group"><label>Last Name Column <span style="font-weight:400;text-transform:none;font-size:11px">(optional)</span></label><select class="modal-select" id="mapLast"></select></div><div class="modal-group"><label>Phone Number Column</label><select class="modal-select" id="mapPhone"></select></div><div class="modal-group"><label>Company / Position <span style="font-weight:400;text-transform:none;font-size:11px">(optional)</span></label><select class="modal-select" id="mapCompany"></select></div><div class="modal-preview" id="mapPreview">Preview will appear here</div><button class="modal-btn" onclick="confirmMapping()">✅ Import with these columns</button><button class="modal-btn-sec" onclick="cancelMapping()">Cancel</button></div></div><!-- BOTTOM NAV --><div class="bot-nav"><button class="nav-item active" onclick="switchTab('dialer',this)"><span class="nav-ico">📞</span>Dialer</button><button class="nav-item" onclick="switchTab('loan',this)"><span class="nav-ico">💵</span>Loan Calc</button><button class="nav-item" onclick="switchTab('reports',this)"><span class="nav-ico">📊</span>Reports</button><button class="nav-item" onclick="switchTab('settings',this)"><span class="nav-ico">⚙️</span>Settings</button></div></div><div class="toast" id="toast"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script><script>const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4CxBUQ7YWiPaFM5lG_D6WWDxr3AXmlE5zrO7-TRuYP4oi19s5zKzJH6gIHqbfkVQ/exec';
 const LIC_KEY = 'pdpro_license';
 const SAVE_KEY = 'pdpro_v4';
-function _gsl(){ return localStorage.getItem(LIC_KEY)||''; }
-function _svl(k,u){ localStorage.setItem(LIC_KEY,k); localStorage.setItem(LIC_KEY+'_user',u||''); }
-function _gsu(){ return localStorage.getItem(LIC_KEY+'_user')||''; }
-function _gfp(){
+function getSavedLicense(){ return localStorage.getItem(LIC_KEY)||''; }
+function saveLicense(k,u){ localStorage.setItem(LIC_KEY,k); localStorage.setItem(LIC_KEY+'_user',u||''); }
+function getSavedUser(){ return localStorage.getItem(LIC_KEY+'_user')||''; }
+function getFingerprint(){
 const raw = [
 navigator.userAgent,
 navigator.language,
@@ -19,72 +19,72 @@ let h=0;
 for(let i=0;i<raw.length;i++){ h=((h<<5)-h)+raw.charCodeAt(i); h|=0; }
 return Math.abs(h).toString(36);
 }
-function _csk(){ localStorage.removeItem(LIC_KEY); localStorage.removeItem(LIC_KEY+'_user'); document.getElementById('lgSaved').style.display='none'; document.getElementById('lgCard').style.display='block'; }
-function _ll(){ if(!confirm('Sign out? Your call data and progress will be saved. You can resume after logging back in.')) return; _slog('🚪 Logout'); _csk(); location.reload(); }
-function _usk(){
-const k=_gsl();
-if(k) _vk(k,true);
+function clearSavedKey(){ localStorage.removeItem(LIC_KEY); localStorage.removeItem(LIC_KEY+'_user'); document.getElementById('lgSaved').style.display='none'; document.getElementById('lgCard').style.display='block'; }
+function logoutLicense(){ if(!confirm('Sign out? Your call data and progress will be saved. You can resume after logging back in.')) return; sendLog('🚪 Logout'); clearSavedKey(); location.reload(); }
+function useSavedKey(){
+const k=getSavedLicense();
+if(k) validateKey(k,true);
 }
-async function _cl(){
+async function checkLicense(){
 const k=document.getElementById('lgInp').value.trim().toUpperCase();
-if(!k){ _sle('Please enter a license key'); return; }
-_vk(k,false);
+if(!k){ showLicErr('Please enter a license key'); return; }
+validateKey(k,false);
 }
-async function _vk(key,isSaved){
+async function validateKey(key,isSaved){
 const btn=document.getElementById('lgBtn');
 const spinner=document.getElementById('lgSpinner');
 const errEl=document.getElementById('lgErr');
 btn.disabled=true; errEl.textContent='';
 spinner.style.display='block';
 try{
-const fp=_gfp();
+const fp=getFingerprint();
 const url=`${APPS_SCRIPT_URL}?key=${encodeURIComponent(key)}&action=validate&fp=${encodeURIComponent(fp)}`;
 const res=await fetch(url);
 const data=await res.json();
 if(data.valid){
-_svl(key, data.user||'');
+saveLicense(key, data.user||'');
 document.getElementById('activeLicenseLbl').textContent=key;
 document.getElementById('licenseGate').style.display='none';
-_ia();
-_st('🔑 License activated!');
+initApp();
+showToast('🔑 License activated!');
 } else {
-if(isSaved){ _csk(); }
-_sle(data.message||'Invalid or revoked license key');
+if(isSaved){ clearSavedKey(); }
+showLicErr(data.message||'Invalid or revoked license key');
 }
 } catch(e){
 if(APPS_SCRIPT_URL==='YOUR_APPS_SCRIPT_URL_HERE'){
-_sle('⚙️ Apps Script URL not configured yet');
+showLicErr('⚙️ Apps Script URL not configured yet');
 } else {
-_sle('Connection error. Check your internet.');
+showLicErr('Connection error. Check your internet.');
 }
 }
 btn.disabled=false; spinner.style.display='none';
 }
-function _sle(msg){ document.getElementById('lgErr').textContent=msg; }
+function showLicErr(msg){ document.getElementById('lgErr').textContent=msg; }
 document.getElementById('lgInp').addEventListener('input',function(){
 let v=this.value.replace(/[^A-Za-z0-9]/g,'').toUpperCase().slice(0,12);
 if(v.length>8) v=v.slice(0,4)+'-'+v.slice(4,8)+'-'+v.slice(8);
 else if(v.length>4) v=v.slice(0,4)+'-'+v.slice(4);
 this.value=v;
 });
-document.getElementById('lgInp').addEventListener('keydown',function(e){ if(e.key==='Enter') _cl(); });
+document.getElementById('lgInp').addEventListener('keydown',function(e){ if(e.key==='Enter') checkLicense(); });
 (function(){
-const saved=_gsl();
+const saved=getSavedLicense();
 if(saved){
-const user=_gsu();
+const user=getSavedUser();
 document.getElementById('lgUserName').textContent=user||'there';
 const parts=saved.split('-');
 const masked=parts.length>=1?parts[0]+'-****-****':saved.slice(0,4)+'****';
 document.getElementById('lgSavedKey').textContent='Key: '+masked;
 document.getElementById('lgSaved').style.display='block';
 document.getElementById('lgCard').style.display='none';
-_vk(saved,true);
+validateKey(saved,true);
 }
 })();
 const S={contacts:[],idx:0,paused:false,logs:[],disp:null,history:[],settings:{skip:true,req:true,note:true}};
-function _ia(){
-const u=_gsu(); if(u) document.getElementById('hdrUserName').textContent='👤 '+u;
-const restored=_ls();
+function initApp(){
+const u=getSavedUser(); if(u) document.getElementById('hdrUserName').textContent='👤 '+u;
+const restored=loadSaved();
 if(restored&&S.contacts.length){
 ['skip','req','note'].forEach(k=>{ const el=document.getElementById('tog-'+k); if(el) el.classList.toggle('on',S.settings[k]); });
 const iz=document.getElementById('importZone');
@@ -92,16 +92,16 @@ iz.classList.add('ok');
 iz.querySelector('.iz-ico').textContent='✅';
 iz.querySelector('.iz-t').textContent=`${S.contacts.length} contacts (restored)`;
 iz.querySelector('.iz-s').textContent=`Progress: ${S.idx}/${S.contacts.length}`;
-_sds(true);
-_st(`✅ Session restored · ${S.contacts.length} contacts`);
+showDialerSections(true);
+showToast(`✅ Session restored · ${S.contacts.length} contacts`);
 }
-_ua(); _rl();
-const k=_gsl(); if(k) document.getElementById('activeLicenseLbl').textContent=k;
+updateAll(); renderLog();
+const k=getSavedLicense(); if(k) document.getElementById('activeLicenseLbl').textContent=k;
 const d=new Date(),pad=n=>String(n).padStart(2,'0');
 document.getElementById('loanStart').value=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 }
 let saveTimer;
-function _ss(){
+function scheduleSave(){
 const dot=document.getElementById('saveDot');
 dot.className='save-dot saving';
 clearTimeout(saveTimer);
@@ -112,23 +112,23 @@ dot.className='save-dot';
 }catch(e){}
 },800);
 }
-function _ls(){
+function loadSaved(){
 try{ const p=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}'); if(!p.contacts||!p.contacts.length) return false; S.contacts=p.contacts; S.idx=Math.min(p.idx||0,S.contacts.length); S.paused=p.paused||false; S.logs=p.logs||[]; S.history=p.history||[]; if(p.settings) Object.assign(S.settings,p.settings); return true; } catch(e){ return false; }
 }
 let toastT;
-function _st(msg){ clearTimeout(toastT); const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); toastT=setTimeout(()=>t.classList.remove('show'),2400); }
-function _swt(name,btn){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active')); document.getElementById('pg-'+name).classList.add('active'); btn.classList.add('active'); if(name==='reports') _ur(); }
-let _rj=[], _rf=null;
-function _hf(file){
+function showToast(msg){ clearTimeout(toastT); const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); toastT=setTimeout(()=>t.classList.remove('show'),2400); }
+function switchTab(name,btn){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active')); document.getElementById('pg-'+name).classList.add('active'); btn.classList.add('active'); if(name==='reports') updateReports(); }
+let _rawJson=[], _rawFile=null;
+function handleFile(file){
 if(!file) return;
-_rf=file;
+_rawFile=file;
 const reader=new FileReader();
 reader.onload=ev=>{
 try{
 const wb=XLSX.read(new Uint8Array(ev.target.result),{type:'array'});
 const json=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
-if(!json.length){ _st('❌ No data found'); return; }
-_rj=json;
+if(!json.length){ showToast('❌ No data found'); return; }
+_rawJson=json;
 const keys=Object.keys(json[0]);
 const phoneCol = keys.find(h=>/phone|mobile|number|tel/i.test(h));
 const firstCol = keys.find(h=>/first.?name|fname|first/i.test(h));
@@ -136,15 +136,15 @@ const lastCol = keys.find(h=>/last.?name|lname|last|surname/i.test(h));
 const nameCol = keys.find(h=>/^name$|full.?name/i.test(h));
 const coCol = keys.find(h=>/company|position|title|org/i.test(h));
 if(phoneCol && (nameCol || firstCol)){
-_pc(json, phoneCol, firstCol||nameCol, lastCol||'', coCol||'', file.name);
+processContacts(json, phoneCol, firstCol||nameCol, lastCol||'', coCol||'', file.name);
 } else {
-_sm(keys, phoneCol, firstCol||nameCol||'', lastCol||'', coCol||'');
+showMapper(keys, phoneCol, firstCol||nameCol||'', lastCol||'', coCol||'');
 }
-}catch(e){ _st('❌ '+e.message); }
+}catch(e){ showToast('❌ '+e.message); }
 };
 reader.readAsArrayBuffer(file);
 }
-function _sm(keys, phoneCol, firstCol, lastCol, coCol){
+function showMapper(keys, phoneCol, firstCol, lastCol, coCol){
 const none='— None —';
 const opts = [none,...keys].map(k=>`<option value="${k}">${k}</option>`).join('');
 const selVal=(id,val)=>{ const s=document.getElementById(id); s.innerHTML=opts; if(val&&keys.includes(val)) s.value=val; };
@@ -152,15 +152,15 @@ selVal('mapPhone', phoneCol||'');
 selVal('mapFirst', firstCol||'');
 selVal('mapLast', lastCol||'');
 selVal('mapCompany',coCol||'');
-_ump();
+updateMapPreview();
 document.getElementById('mapModal').style.display='flex';
 ['mapPhone','mapFirst','mapLast','mapCompany'].forEach(id=>
-document.getElementById(id).addEventListener('change', _ump)
+document.getElementById(id).addEventListener('change', updateMapPreview)
 );
 }
-function _ump(){
+function updateMapPreview(){
 const none='— None —';
-const r=_rj[0]||{};
+const r=_rawJson[0]||{};
 const ph=document.getElementById('mapPhone').value;
 const fn=document.getElementById('mapFirst').value;
 const ln=document.getElementById('mapLast').value;
@@ -173,33 +173,33 @@ document.getElementById('mapPreview').innerHTML=
 👤 Name: <strong>${name}</strong><br>
 📞 Phone: <strong>${phone}</strong>${company?'<br>🏢 Company: <strong>'+company+'</strong>':''}`;
 }
-function _cm(){
+function confirmMapping(){
 const none='— None —';
 const ph=document.getElementById('mapPhone').value;
 const fn=document.getElementById('mapFirst').value;
 const ln=document.getElementById('mapLast').value;
 const co=document.getElementById('mapCompany').value;
-if(!ph||ph===none){ _st('⚠️ Please select a phone column'); return; }
+if(!ph||ph===none){ showToast('⚠️ Please select a phone column'); return; }
 document.getElementById('mapModal').style.display='none';
-_pc(_rj, ph, fn===none?'':fn, ln===none?'':ln, co===none?'':co, _rf?_rf.name:'file');
+processContacts(_rawJson, ph, fn===none?'':fn, ln===none?'':ln, co===none?'':co, _rawFile?_rawFile.name:'file');
 }
-function _cnm(){
+function cancelMapping(){
 document.getElementById('mapModal').style.display='none';
-_st('Import cancelled');
+showToast('Import cancelled');
 }
-function _np(raw){
+function normalizePhone(raw){
 let digits = String(raw||'').replace(/[^0-9]/g,'');
 if(digits.length < 9) return null;
 if(digits.length === 9) digits = '1' + digits;
 if(digits.length === 10) digits = '1' + digits;
 return '+' + digits;
 }
-function _pc(json, phoneCol, firstCol, lastCol, coCol, fileName){
+function processContacts(json, phoneCol, firstCol, lastCol, coCol, fileName){
 let invalid=0;
 const contacts=[];
 json.forEach(r=>{
 const rawPhone = String(r[phoneCol]||'').trim();
-const phone = _np(rawPhone);
+const phone = normalizePhone(rawPhone);
 if(!phone){ invalid++; return; }
 const first = firstCol ? String(r[firstCol]||'').trim() : '';
 const last = lastCol ? String(r[lastCol] ||'').trim() : '';
@@ -207,35 +207,35 @@ const name = [first,last].filter(Boolean).join(' ');
 const company = coCol ? String(r[coCol] ||'').trim() : '';
 contacts.push({ phone, name, company, status:'New', note:'', raw:r });
 });
-if(!contacts.length){ _st('❌ No valid contacts found'); return; }
+if(!contacts.length){ showToast('❌ No valid contacts found'); return; }
 S.contacts=contacts; S.idx=0; S.logs=[]; S.history=[]; S.disp=null;
-_cc(); document.getElementById('notesTA').value='';
+clearChips(); document.getElementById('notesTA').value='';
 const iz=document.getElementById('importZone');
 iz.classList.add('ok');
 iz.querySelector('.iz-ico').textContent='✅';
 iz.querySelector('.iz-t').textContent=`${contacts.length} contacts loaded${invalid?' ('+invalid+' invalid removed)':''}`;
 iz.querySelector('.iz-s').textContent=fileName;
-_sds(true); _ua(); _rl();
-_al(`Imported ${contacts.length} contacts from ${fileName}${invalid?' · '+invalid+' removed as invalid':''}`, '#00813A');
-_st(`✅ ${contacts.length} contacts${invalid?' · '+invalid+' skipped':''}`);
-_ss();
+showDialerSections(true); updateAll(); renderLog();
+addLog(`Imported ${contacts.length} contacts from ${fileName}${invalid?' · '+invalid+' removed as invalid':''}`, '#00813A');
+showToast(`✅ ${contacts.length} contacts${invalid?' · '+invalid+' skipped':''}`);
+scheduleSave();
 }
-document.getElementById('fi1').addEventListener('change',function(){ _hf(this.files[0]); });
-document.getElementById('fi2').addEventListener('change',function(){ _hf(this.files[0]); });
-function _sds(on){
+document.getElementById('fi1').addEventListener('change',function(){ handleFile(this.files[0]); });
+document.getElementById('fi2').addEventListener('change',function(){ handleFile(this.files[0]); });
+function showDialerSections(on){
 ['ccCard','dialSec','chipCard','notesSec'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display=on?'block':'none'; });
 ['actRow','ctrlRow'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display=on?'grid':'none'; });
 }
-function _gc(){ return S.contacts.length&&S.idx<S.contacts.length?S.contacts[S.idx]:null; }
-function _ini(n){ if(!n)return'?'; const p=n.trim().split(' '); return(p.length>=2?p[0][0]+p[p.length-1][0]:n[0]).toUpperCase(); }
-function _ua(){
+function getC(){ return S.contacts.length&&S.idx<S.contacts.length?S.contacts[S.idx]:null; }
+function initials(n){ if(!n)return'?'; const p=n.trim().split(' '); return(p.length>=2?p[0][0]+p[p.length-1][0]:n[0]).toUpperCase(); }
+function updateAll(){
 const total=S.contacts.length,cur=S.idx;
 document.getElementById('pbarF').style.width=total?`${(cur/total)*100}%`:'0%';
 document.getElementById('pbarT').textContent=`${cur}/${total}`;
-const c=_gc();
+const c=getC();
 if(!c){ document.getElementById('ccBadge').textContent=total?'Done!':'—'; document.getElementById('ccAv').textContent=total?'✅':'?'; document.getElementById('ccName').textContent=total?'All done!':'—'; document.getElementById('ccNum').textContent=''; document.getElementById('ccCo').textContent=''; document.getElementById('dlBtn').disabled=true; document.getElementById('dlHint').textContent=total?'All contacts processed':'Load contacts to begin'; document.getElementById('hdrSub').textContent=total?`${cur}/${total} completed`:'Import a list to begin'; document.getElementById('pulseEl').classList.remove('on'); return; }
 document.getElementById('ccBadge').textContent=`${cur+1} / ${total}`;
-document.getElementById('ccAv').textContent=_ini(c.name);
+document.getElementById('ccAv').textContent=initials(c.name);
 document.getElementById('ccName').textContent=c.name||'Unknown';
 document.getElementById('ccNum').textContent=c.phone;
 document.getElementById('ccCo').textContent=c.company||'';
@@ -243,67 +243,67 @@ document.getElementById('dlBtn').disabled=S.paused;
 document.getElementById('dlHint').textContent=S.paused?'Dialer paused — tap Resume':'Tap to call '+c.phone;
 document.getElementById('hdrSub').textContent=`${cur+1}/${total} · ${S.paused?'Paused':'Active'}`;
 }
-function _cc(){ S.disp=null; document.querySelectorAll('.chip').forEach(b=>b.classList.remove('sel')); }
-document.getElementById('chipsWrap').addEventListener('click',e=>{ const btn=e.target.closest('.chip'); if(!btn) return; const v=btn.dataset.v; if(S.disp===v){ _cc(); return; } _cc(); S.disp=v; btn.classList.add('sel'); });
-function _dd(){
-const c=_gc(); if(!c){ _st('❌ No contact to dial'); return; }
+function clearChips(){ S.disp=null; document.querySelectorAll('.chip').forEach(b=>b.classList.remove('sel')); }
+document.getElementById('chipsWrap').addEventListener('click',e=>{ const btn=e.target.closest('.chip'); if(!btn) return; const v=btn.dataset.v; if(S.disp===v){ clearChips(); return; } clearChips(); S.disp=v; btn.classList.add('sel'); });
+function doDial(){
+const c=getC(); if(!c){ showToast('❌ No contact to dial'); return; }
 const clean=c.phone.replace(/[^0-9+]/g,'');
-if(clean.length<5){ if(S.settings.skip){ _st('⏭ Skipping invalid'); _dsk(); } else _st('❌ Invalid number'); return; }
+if(clean.length<5){ if(S.settings.skip){ showToast('⏭ Skipping invalid'); doSkip(); } else showToast('❌ Invalid number'); return; }
 const btn=document.getElementById('dlBtn');
 btn.classList.add('ringing'); btn.textContent='📲'; btn.disabled=true;
 document.getElementById('pulseEl').classList.add('on');
-_al(`Dialing ${c.phone}${c.name?' · '+c.name:''}`, '#1565C0');
-_slog('📞 Dialed', c.phone, c.name);
+addLog(`Dialing ${c.phone}${c.name?' · '+c.name:''}`, '#1565C0');
+sendLog('📞 Dialed', c.phone, c.name);
 window.location.href=`tel:${clean}`;
-setTimeout(()=>{ btn.classList.remove('ringing'); btn.textContent='📞'; document.getElementById('pulseEl').classList.remove('on'); _ua(); },2500);
+setTimeout(()=>{ btn.classList.remove('ringing'); btn.textContent='📞'; document.getElementById('pulseEl').classList.remove('on'); updateAll(); },2500);
 }
-function _da(){
-const c=_gc(); if(!c){ _st('❌ No active contact'); return; }
-if(S.settings.req&&!S.disp){ _st('⚠️ Select a call status first'); return; }
+function doApply(){
+const c=getC(); if(!c){ showToast('❌ No active contact'); return; }
+if(S.settings.req&&!S.disp){ showToast('⚠️ Select a call status first'); return; }
 const note=document.getElementById('notesTA').value.trim();
 const status=S.disp||'Other';
 c.status=status; c.note=note;
-_al(`${c.name||c.phone} → ${status}${note?' · "'+note+'"':''}`, _sc(status));
-_slog('✅ Disposition', c.phone, c.name, status, note);
+addLog(`${c.name||c.phone} → ${status}${note?' · "'+note+'"':''}`, statusColor(status));
+sendLog('✅ Disposition', c.phone, c.name, status, note);
 S.history.push({contact:{name:c.name,phone:c.phone,company:c.company},status,note,ts:new Date().toISOString()});
-_st(`✅ ${status} saved`); _cc();
+showToast(`✅ ${status} saved`); clearChips();
 if(S.settings.note) document.getElementById('notesTA').value='';
-_ss(); setTimeout(_nc,280);
+scheduleSave(); setTimeout(nextC,280);
 }
-function _nc(){
-if(S.paused){ _st('⏸ Paused — tap Resume'); return; }
-S.idx++; _ua(); _cc();
+function nextC(){
+if(S.paused){ showToast('⏸ Paused — tap Resume'); return; }
+S.idx++; updateAll(); clearChips();
 if(S.settings.note) document.getElementById('notesTA').value='';
-if(S.idx>=S.contacts.length){ _st('🎉 All contacts done!'); _al('All contacts processed','#00813A'); }
-_ss();
+if(S.idx>=S.contacts.length){ showToast('🎉 All contacts done!'); addLog('All contacts processed','#00813A'); }
+scheduleSave();
 }
-function _dsk(){ const c=_gc(); if(!c) return; _al(`Skipped ${c.phone}`,'#9E9E9E'); _slog('⏭ Skipped', c.phone, c.name); _st('Skipped'); _nc(); }
-function _dtp(){
+function doSkip(){ const c=getC(); if(!c) return; addLog(`Skipped ${c.phone}`,'#9E9E9E'); sendLog('⏭ Skipped', c.phone, c.name); showToast('Skipped'); nextC(); }
+function doTogglePause(){
 S.paused=!S.paused;
 document.getElementById('pauseAi').textContent=S.paused?'▶':'⏸';
 document.getElementById('pauseTxt').textContent=S.paused?'Resume':'Pause';
 const pb=document.getElementById('pauseBtn2');
 pb.classList.toggle('on',S.paused); pb.textContent=S.paused?'▶ Resume':'⏸ Pause';
-_al(S.paused?'Paused':'Resumed',S.paused?'#FF9800':'#00813A');
-_st(S.paused?'⏸ Paused':'▶ Resumed'); _ua(); _ss();
+addLog(S.paused?'Paused':'Resumed',S.paused?'#FF9800':'#00813A');
+showToast(S.paused?'⏸ Paused':'▶ Resumed'); updateAll(); scheduleSave();
 }
-function _dr(){
-if(!S.contacts.length&&!S.logs.length){ _st('Nothing to reset'); return; }
+function doReset(){
+if(!S.contacts.length&&!S.logs.length){ showToast('Nothing to reset'); return; }
 if(!confirm('Reset all call data? Cannot be undone.')) return;
 S.contacts=[]; S.idx=0; S.paused=false; S.logs=[]; S.history=[]; S.disp=null;
-_cc(); document.getElementById('notesTA').value='';
+clearChips(); document.getElementById('notesTA').value='';
 document.getElementById('pauseAi').textContent='⏸'; document.getElementById('pauseTxt').textContent='Pause';
 document.getElementById('pauseBtn2').classList.remove('on'); document.getElementById('pauseBtn2').textContent='⏸ Pause';
 const iz=document.getElementById('importZone'); iz.classList.remove('ok'); iz.querySelector('.iz-ico').textContent='📂'; iz.querySelector('.iz-t').textContent='Import your call list'; iz.querySelector('.iz-s').textContent='Tap to browse · CSV or Excel';
-_sds(false); _ua(); _rl(); _ur();
-localStorage.removeItem(SAVE_KEY); _st('↺ Reset complete');
+showDialerSections(false); updateAll(); renderLog(); updateReports();
+localStorage.removeItem(SAVE_KEY); showToast('↺ Reset complete');
 }
 const SC={'Interested':'#2E7D32','Sale':'#33691E','Callback':'#E65100','Busy':'#F57F17','No Answer':'#616161','Voicemail':'#6A1B9A','Ans. Machine':'#006064','Wrong Number':'#4E342E','DNC':'#B71C1C','Other':'#0D47A1'};
-function _sc(s){ return SC[s]||'#555'; }
-function _slog(type, phone='', contact='', status='', note=''){
+function statusColor(s){ return SC[s]||'#555'; }
+function sendLog(type, phone='', contact='', status='', note=''){
 try{
-const user=_gsu()||'Unknown';
-const key=_gsl()||'';
+const user=getSavedUser()||'Unknown';
+const key=getSavedLicense()||'';
 if(!user||!key) return;
 const url=APPS_SCRIPT_URL
 +'?action=log'
@@ -317,20 +317,20 @@ const url=APPS_SCRIPT_URL
 fetch(url).catch(()=>{});
 }catch(e){}
 }
-function _al(msg,color='#555'){ const t=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); S.logs.unshift({msg,color,t}); _rl(); }
-function _rl(){ const w=document.getElementById('logWrap'); if(!S.logs.length){ w.innerHTML='<div class="empty-state"><div class="empty-ico">📋</div>No calls yet</div>'; return; } w.innerHTML=S.logs.slice(0,80).map(e=>`<div class="log-row"><div class="log-dot" style="background:${e.color}"></div><div class="log-info"><div class="log-msg">${e.msg}</div></div><div class="log-time">${e.t}</div></div>`).join(''); }
-function _clog(){ S.logs=[]; _rl(); _ss(); _st('Log cleared'); }
+function addLog(msg,color='#555'){ const t=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); S.logs.unshift({msg,color,t}); renderLog(); }
+function renderLog(){ const w=document.getElementById('logWrap'); if(!S.logs.length){ w.innerHTML='<div class="empty-state"><div class="empty-ico">📋</div>No calls yet</div>'; return; } w.innerHTML=S.logs.slice(0,80).map(e=>`<div class="log-row"><div class="log-dot" style="background:${e.color}"></div><div class="log-info"><div class="log-msg">${e.msg}</div></div><div class="log-time">${e.t}</div></div>`).join(''); }
+function clearLog(){ S.logs=[]; renderLog(); scheduleSave(); showToast('Log cleared'); }
 function fmt(n){ return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 function fmtDate(d){ return d.toLocaleDateString('en-US',{month:'short',year:'numeric'}); }
-function _calcloan(){
+function calcLoan(){
 const amt=parseFloat(document.getElementById('loanAmt').value);
 const rate=parseFloat(document.getElementById('loanRate').value);
 const term=parseInt(document.getElementById('loanTerm').value);
 const startStr=document.getElementById('loanStart').value;
-if(!amt||amt<=0){ _st('⚠️ Enter loan amount'); return; }
-if(!rate||rate<0){ _st('⚠️ Enter interest rate'); return; }
-if(!term||term<1){ _st('⚠️ Enter loan term'); return; }
-if(!startStr){ _st('⚠️ Select starting date'); return; }
+if(!amt||amt<=0){ showToast('⚠️ Enter loan amount'); return; }
+if(!rate||rate<0){ showToast('⚠️ Enter interest rate'); return; }
+if(!term||term<1){ showToast('⚠️ Enter loan term'); return; }
+if(!startStr){ showToast('⚠️ Select starting date'); return; }
 const mr=rate/100/12;
 const monthly=mr===0?amt/term:amt*(mr*Math.pow(1+mr,term))/(Math.pow(1+mr,term)-1);
 const totalPay=monthly*term;
@@ -350,8 +350,8 @@ document.getElementById('amortBody').innerHTML=rows;
 document.getElementById('loanResults').style.display='block';
 document.getElementById('loanResults').scrollIntoView({behavior:'smooth'});
 }
-function _clrloan(){ ['loanAmt','loanRate','loanTerm'].forEach(id=>document.getElementById(id).value=''); document.getElementById('loanResults').style.display='none'; }
-function _ur(){
+function clearLoan(){ ['loanAmt','loanRate','loanTerm'].forEach(id=>document.getElementById(id).value=''); document.getElementById('loanResults').style.display='none'; }
+function updateReports(){
 const total=S.contacts.length,called=S.history.length;
 const counts={};
 S.history.forEach(h=>{ counts[h.status]=(counts[h.status]||0)+1; });
@@ -367,19 +367,19 @@ const max=Math.max(...Object.values(counts));
 const bc={'Interested':'#43A047','Sale':'#7CB342','Callback':'#FB8C00','Busy':'#F9A825','No Answer':'#757575','Voicemail':'#8E24AA','Ans. Machine':'#00838F','Wrong Number':'#6D4C41','DNC':'#E53935','Other':'#1976D2'};
 cw.innerHTML=Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([s,n])=>`<div class="bar-row"><div class="bar-lbl">${s}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.round((n/max)*100)}%;background:${bc[s]||'#90A4AE'}"></div></div><div class="bar-val">${n}</div></div>`).join('');
 }
-function _ecsv(){
-if(!S.contacts.length&&!S.history.length){ _st('❌ No data to export'); return; }
+function exportCSV(){
+if(!S.contacts.length&&!S.history.length){ showToast('❌ No data to export'); return; }
 const rows=[['Name','Phone','Company','Status','Note','Called At']];
 if(S.history.length){ S.history.forEach(h=>rows.push([h.contact.name||'',h.contact.phone||'',h.contact.company||'',h.status||'',h.note||'',h.ts||''])); const cp=new Set(S.history.map(h=>h.contact.phone)); S.contacts.filter(c=>!cp.has(c.phone)).forEach(c=>rows.push([c.name||'',c.phone||'',c.company||'','Not Called',c.note||'',''])); }
 else{ S.contacts.forEach(c=>rows.push([c.name||'',c.phone||'',c.company||'','New',c.note||'',''])); }
 const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
-_df('dialer_export_'+new Date().toISOString().slice(0,10)+'.csv','data:text/csv;charset=utf-8,'+encodeURIComponent(csv));
-_st('📄 CSV exported!');
+dlFile('dialer_export_'+new Date().toISOString().slice(0,10)+'.csv','data:text/csv;charset=utf-8,'+encodeURIComponent(csv));
+showToast('📄 CSV exported!');
 }
 function exportJSON(){
-if(!S.contacts.length){ _st('❌ No data'); return; }
-_df('dialer_data_'+new Date().toISOString().slice(0,10)+'.json','data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify({exportedAt:new Date().toISOString(),totalContacts:S.contacts.length,callHistory:S.history,contacts:S.contacts.map(c=>({name:c.name,phone:c.phone,company:c.company,status:c.status,note:c.note}))},null,2)));
-_st('📦 JSON exported!');
+if(!S.contacts.length){ showToast('❌ No data'); return; }
+dlFile('dialer_data_'+new Date().toISOString().slice(0,10)+'.json','data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify({exportedAt:new Date().toISOString(),totalContacts:S.contacts.length,callHistory:S.history,contacts:S.contacts.map(c=>({name:c.name,phone:c.phone,company:c.company,status:c.status,note:c.note}))},null,2)));
+showToast('📦 JSON exported!');
 }
-function _df(name,url){ const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
-function _ts(key,btn){ S.settings[key]=!S.settings[key]; btn.classList.toggle('on',S.settings[key]); _st(S.settings[key]?'✅ Enabled':'Disabled'); _ss(); }</script></body></html>
+function dlFile(name,url){ const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
+function toggleSetting(key,btn){ S.settings[key]=!S.settings[key]; btn.classList.toggle('on',S.settings[key]); showToast(S.settings[key]?'✅ Enabled':'Disabled'); scheduleSave(); }</script></body></html>
